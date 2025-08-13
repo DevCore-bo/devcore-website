@@ -31,11 +31,11 @@
 .feature-icon {
   width: 28px;
   height: 28px;
-  color: #00bfff;
+  color: var(--color-cyan); /* Mantenemos el cian, se ve bien sobre claro */
 }
 
 .feature-text {
   font-size: 0.9rem;
-  color: #cfeaff;
+  color: var(--color-light-blue); /* Usamos un azul oscuro para el texto */
   line-height: 1.4;
 }

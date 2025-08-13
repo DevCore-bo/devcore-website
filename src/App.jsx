@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Footer from './components/Footer/Footer';
 import ProductDetailsPage from './pages/ProductDetails';
+import ScrollTop from './components/utils/ScrollTop';
 import './App.css';
 
 const HomePageContent = () => {
@@ -59,13 +60,11 @@ const HomePageContent = () => {
   );
 };
 
-// --- Componente Principal App ---
 function App() {
   return (
-    // <BrowserRouter> DEBE ser el componente padre que envuelve todo.
     <BrowserRouter> 
-    
-      <Navbar /> {/* Ahora Navbar es HIJO de BrowserRouter y puede usar <Link> */}
+      <ScrollTop /> 
+      <Navbar /> 
       
       <Routes>
         <Route path="/" element={<HomePageContent />} />
@@ -73,7 +72,7 @@ function App() {
         <Route path="*" element={<h1>404: Página no encontrada</h1>} />
       </Routes>
       
-      <Footer /> {/* Footer también es HIJO y puede usar <Link> */}
+      <Footer /> 
 
     </BrowserRouter>
   );

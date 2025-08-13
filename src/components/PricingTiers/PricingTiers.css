@@ -1,12 +1,12 @@
-
 .pricing-section {
-    background-color: #0d2856;
+    border-top: 1px solid #e5e7eb;
     min-height: calc(100vh - var(--navbar-height));
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 2rem 1rem;
 }
+
 
 .pricing-section__header {
     text-align: center;
@@ -19,14 +19,14 @@
 .pricing-section__title {
     font-size: clamp(2rem, 4.5vw, 3rem);
     font-weight: 700;
-    color: #fff;
+  color: var(--color-dark-blue); 
     line-height: 1.2;
     margin: 0;
 }
 
 .pricing-section__subtitle {
     font-size: clamp(1rem, 2vw, 1.1rem);
-    color: #a0b3c2;
+    color: #4b5563; 
     margin-top: 0.75rem;
     max-width: 55ch;
     margin-left: auto;
