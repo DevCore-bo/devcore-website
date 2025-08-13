@@ -1,0 +1,101 @@
+
+.product-header-section {
+   position: relative;
+    background: linear-gradient(135deg, #1a252f, #2c3e50);
+    color: #fff;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.product-header-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1.2s ease-out both; /* Animación de entrada suave */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.product-title {
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+    background: linear-gradient(90deg, #e6f7ff, #00bfff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.product-description {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    line-height: 1.65;
+    color: #e8f6ff;
+    max-width: 65ch;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+.product-header-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, rgba(0, 191, 255, 0.15), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 1; 
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    opacity: 0.7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: bounce 2s infinite;
+      background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.scroll-indicator span {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.scroll-indicator svg {
+    width: 24px;
+    height: 24px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}

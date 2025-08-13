@@ -1,4 +1,3 @@
-/* Base del hero: aprovechamos tu gradiente de #inicio */
 .hero-section {
     position: relative;
     background: linear-gradient(135deg, #1a252f, #2c3e50);

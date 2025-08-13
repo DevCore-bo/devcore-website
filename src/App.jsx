@@ -1,39 +1,81 @@
-// src/App.jsx
-import React from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Hero/Hero";
-import Footer from "./components/Footer/Footer";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
+import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Hero/Hero';
+import Footer from './components/Footer/Footer';
+import ProductDetailsPage from './pages/ProductDetails';
+import './App.css';
+
+const HomePageContent = () => {
+  const buttonStyle = {
+    display: 'inline-block',
+    margin: '10px',
+    padding: '12px 24px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: '#007bff',
+    border: 'none',
+    borderRadius: '5px',
+    textDecoration: 'none',
+    cursor: 'pointer'
+  };
+
+  return (
+    <main>
+      <Hero />
+      <section id="nosotros">
+        <h1>Nosotros</h1>
+        <p>Contenido sobre nosotros...</p>
+      </section>
+
+      <section id="tecnologias">
+        <h1>Tecnologías</h1>
+        <p>Contenido sobre las tecnologías que usamos...</p>
+      </section>
+
+      <section id="productos" style={{ textAlign: 'center', padding: '4rem 1rem' }}>
+        <h1>Nuestros Productos</h1>
+        <p>Haz clic en un producto para ver sus detalles:</p>
+         <div>
+    <Link to="/productos/glucook" style={buttonStyle}>
+      Glucook
+    </Link>
+    <Link to="/productos/glow-shine" style={buttonStyle}>
+      Glow & Shine
+    </Link>
+    <Link to="/productos/coinsync" style={buttonStyle}>
+      CoinSync
+    </Link>
+  </div>
+      </section>
+
+      <section id="contactanos">
+        <h1>Contáctanos</h1>
+        <p>Formulario de contacto aquí...</p>
+      </section>
+    </main>
+  );
+};
+
+// --- Componente Principal App ---
 function App() {
   return (
-    <>
-      <Navbar />
-      <main>
-        {}
-        <Hero />
-        <section id="nosotros">
-          <h1>Nosotros</h1>
-          {/* Aquí irá el contenido de la sección "Nosotros" */}
-        </section>
+    // <BrowserRouter> DEBE ser el componente padre que envuelve todo.
+    <BrowserRouter> 
+    
+      <Navbar /> {/* Ahora Navbar es HIJO de BrowserRouter y puede usar <Link> */}
+      
+      <Routes>
+        <Route path="/" element={<HomePageContent />} />
+        <Route path="/productos/:productId" element={<ProductDetailsPage />} />
+        <Route path="*" element={<h1>404: Página no encontrada</h1>} />
+      </Routes>
+      
+      <Footer /> {/* Footer también es HIJO y puede usar <Link> */}
 
-        <section id="tecnologias">
-          <h1>Tecnologías</h1>
-          {/* Aquí irá el contenido de la sección "Tecnologías" */}
-        </section>
-
-        <section id="productos">
-          <h1>Nuestros Productos</h1>
-          {/* Aquí irá el contenido de la sección "Productos" */}
-        </section>
-
-        <section id="contactanos">
-          <h1>Contáctanos</h1>
-          {/* Aquí irá el contenido de la sección "Contáctanos" */}
-        </section>
-      </main>
-      <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 
