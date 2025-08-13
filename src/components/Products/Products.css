@@ -43,19 +43,20 @@
 }
 
 .button_produc {
-    color: #21D0B2;
+    color: #FFFFFF;
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
     height: 40px;
     width: 140px;
-    border: 2px solid #21D0B2;
-    background-color: transparent;
+    border: 2px solid #001B48;
+    background-color: #001B48;
     transition: background-color 0.3s ease, color 0.3s ease; /* animación suave */
     cursor: pointer;
 }
 
 .button_produc:hover {
+    border: 2px solid #21D0B2;
     background-color: #21D0B2; /* fondo aqua */
     color: white;              /* texto blanco para contraste */
 }
