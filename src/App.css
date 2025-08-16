@@ -11,6 +11,10 @@ section {
   text-align: center;
 }
 
+.style_title {
+  color: #001B48;
+}
+
 .cont_tec {
   display: flex;
   flex-direction: column;

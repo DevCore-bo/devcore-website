@@ -74,7 +74,7 @@ function App() {
 
                 <section id="productos">
                   <div className="cont_produc">
-                    <h1>Nuestros Productos</h1>
+                    <h1 className="style_title">Nuestros Productos</h1>
                     <Products />
                     <ProductosBotones /> {/* Botones con links a detalles */}
                   </div>

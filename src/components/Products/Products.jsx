@@ -23,7 +23,7 @@ const Products = () => {
                 <img src={glow} alt="" style={{ width: "80%" }}/>
                 <div>
                     <h1>Glow and Shine</h1>
-                    <p>Sitio Web de cuidado personal que ofrece servicios y recomendaciones para mejorar la belleza y bienestar de los usuarios.</p>
+                    <p>Sitio Web de cuidado personal que ofrece servicios  para mejorar la belleza y bienestar de los usuarios.</p>
                     <Link to="/productos/glow-shine">
                         <button className="button_produc">Ver Más</button>
                     </Link>
@@ -32,7 +32,7 @@ const Products = () => {
             <div className="cont_cardP">
                 <img src={coin} alt="" />
                 <div>
-                    <h1>AGCGI</h1>
+                    <h1>CoinSync</h1>
                     <p>App moderno para la adiministración y gestión de gastos compartidos y/o individuales</p>
                     <Link to="/productos/coinsync">
                         <button className="button_produc">Ver Más</button>

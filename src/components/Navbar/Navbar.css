@@ -106,7 +106,8 @@
 }
 
 .btn-outline {
-    color: #fff;
+    color: #00bfff;
+    background: transparent;
     border: 2px solid #00bfff;
 }
 

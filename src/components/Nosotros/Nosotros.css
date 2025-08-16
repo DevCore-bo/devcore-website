@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     padding: 0%;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .container-medium {
-    height: 70vh;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -96,14 +96,14 @@
 
 .card-text {
     font-size: 15px;
-     text-align: justify;
+    text-align: justify;
 }
 
 .container-segundo {
     /* background-color: black; */
     width: 40%;
     height: 95%;
-   
+
 }
 
 .container-card-valores {
@@ -151,33 +151,37 @@
 .card-mision,
 .card-vision,
 .card-valores {
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-  cursor: pointer; /* Indica que es interactivo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    /* Indica que es interactivo */
 }
 
 .card-mision:hover,
 .card-vision:hover,
 .card-valores:hover {
-  transform: scale(1.08); /* 5% más grande */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.08);
+    /* 5% más grande */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-.container-organigrama{
-    /* background-color: chartreuse; */
+
+.container-organigrama {
+    /* background-color: chartreuse;  */
     height: 40%;
 }
-.button-organigrama{
+
+.button-organigrama {
     border-radius: 30px;
-    background-color: #ffffff;
+    background-color: #FFFFFF00;
     border-color: #001B48 #001B48;
-    height: 20%;
+    height: 40px;
     width: 25%;
     color: #001B48;
     margin-top: 30px;
     cursor: pointer;
-  transition: all 0.3s ease; 
+    transition: all 0.3s ease;
 }
 
 .button-organigrama:active {
-  background-color: #001B48; 
-  color: #ffffff;            
+    background-color: #001B48;
+    color: #ffffff;
 }
