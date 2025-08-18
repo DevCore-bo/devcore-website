@@ -60,16 +60,12 @@ function App() {
             element={
               <>
                 <Hero />
-
                 <section id="nosotros">
                   <Nosotros />
                 </section>
-
+                
                 <section id="tecnologias">
-                  <div className="cont_tec">
-                    <h1>Tecnologías</h1>
                     <Tecnology />
-                  </div>
                 </section>
 
                 <section id="productos">
