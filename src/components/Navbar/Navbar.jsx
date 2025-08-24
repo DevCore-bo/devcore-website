@@ -1,3 +1,4 @@
+// src/components/Navbar/Navbar.jsx
 
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -8,13 +9,12 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState("inicio");
   const navLinksRef = useRef(null);
   const indicatorRef = useRef(null);
-  
   const navigate = useNavigate();
   const location = useLocation();
-  const isHomePage = location.pathname === '/'; 
+  const isHomePage = location.pathname === '/';
 
   const handleNavClick = (e, sectionId) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     if (sectionId === 'inicio') {
       window.dispatchEvent(new Event("replay-hero"));
@@ -30,7 +30,7 @@ const Navbar = () => {
   useEffect(() => {
     const updateIndicator = () => {
       if (!navLinksRef.current || !indicatorRef.current) return;
-const activeLink = navLinksRef.current.querySelector(`a[data-section-id="${activeNav}"]`);
+      const activeLink = navLinksRef.current.querySelector(`a[data-section-id="${activeNav}"]`);
       if (activeLink) {
         const wrapper = navLinksRef.current;
         const left = activeLink.offsetLeft - wrapper.scrollLeft;
@@ -40,7 +40,7 @@ const activeLink = navLinksRef.current.querySelector(`a[data-section-id="${activ
         indicatorRef.current.style.width = `0px`;
       }
     };
-    
+
     updateIndicator();
     window.addEventListener("resize", updateIndicator);
     const wrapper = navLinksRef.current;
@@ -54,10 +54,10 @@ const activeLink = navLinksRef.current.querySelector(`a[data-section-id="${activ
 
   useEffect(() => {
     if (!isHomePage) {
-      setActiveNav(''); 
-      return; 
+      setActiveNav('');
+      return;
     }
-    
+
     setActiveNav(location.hash.replace('#', '') || 'inicio');
 
     const sections = document.querySelectorAll("section[id]");
@@ -71,16 +71,16 @@ const activeLink = navLinksRef.current.querySelector(`a[data-section-id="${activ
           }
         });
       },
-      { rootMargin: "-50% 0px -50% 0px" }
+      { rootMargin: "-20% 0px -80% 0px" }
     );
 
     sections.forEach((section) => observer.observe(section));
 
     return () => sections.forEach((section) => observer.unobserve(section));
-  }, [isHomePage, location.hash]); 
+  }, [isHomePage, location.hash]);
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${activeNav !== 'inicio' || !isHomePage ? 'solid-bg' : ''}`}>
       <div className="navbar-container">
         <div className="navbar-logo-container">
           <a
@@ -94,67 +94,33 @@ const activeLink = navLinksRef.current.querySelector(`a[data-section-id="${activ
 
         <div className="navbar-links-wrapper" ref={navLinksRef}>
           <ul className="navbar-links">
+            {}
             <li>
-              <a
-                href="#inicio"
-                data-section-id="inicio"
-                className={activeNav === "inicio" ? "active" : ""}
-                onClick={(e) => handleNavClick(e, 'inicio')}
-              >
-                Inicio
-              </a>
+              <a href="#inicio" data-section-id="inicio" className={activeNav === "inicio" ? "active" : ""} onClick={(e) => handleNavClick(e, 'inicio')}>Inicio</a>
             </li>
             <li>
-              <a
-                href="#nosotros"
-                data-section-id="nosotros"
-                className={activeNav === "nosotros" ? "active" : ""}
-                onClick={(e) => handleNavClick(e, 'nosotros')}
-              >
-                Nosotros
-              </a>
+              <a href="#nosotros" data-section-id="nosotros" className={activeNav === "nosotros" ? "active" : ""} onClick={(e) => handleNavClick(e, 'nosotros')}>Nosotros</a>
             </li>
             <li>
-              <a
-                href="#tecnologias"
-                data-section-id="tecnologias"
-                className={activeNav === "tecnologias" ? "active" : ""}
-                onClick={(e) => handleNavClick(e, 'tecnologias')}
-              >
-                Tecnologías
-              </a>
+              <a href="#tecnologias" data-section-id="tecnologias" className={activeNav === "tecnologias" ? "active" : ""} onClick={(e) => handleNavClick(e, 'tecnologias')}>Tecnologías</a>
             </li>
             <li>
-              <a
-                href="#productos"
-                data-section-id="productos"
-                className={activeNav === "productos" ? "active" : ""}
-                onClick={(e) => handleNavClick(e, 'productos')}
-              >
-                Nuestros Productos
-              </a>
+              <a href="#productos" data-section-id="productos" className={activeNav === "productos" ? "active" : ""} onClick={(e) => handleNavClick(e, 'productos')}>Nuestros Productos</a>
             </li>
             <li>
-              <a
-                href="#contactanos"
-                data-section-id="contactanos"
-                className={activeNav === "contactanos" ? "active" : ""}
-                onClick={(e) => handleNavClick(e, 'contactanos')}
-              >
-                Contáctanos
-              </a>
+              <a href="#contactanos" data-section-id="contactanos" className={activeNav === "contactanos" ? "active" : ""} onClick={(e) => handleNavClick(e, 'contactanos')}>Contáctanos</a>
             </li>
           </ul>
           <div className="navbar-indicator" ref={indicatorRef}></div>
         </div>
 
         <div className="navbar-actions">
-          <a href="#" className="btn btn-outline">
+          <button
+            className="btn btn-outline"
+            onClick={() => navigate("/login")}
+          >
             Ingresar
-          </a>
-          <a href="#" className="btn btn-primary">
-            Registrarse
-          </a>
+          </button>
         </div>
       </div>
     </nav>

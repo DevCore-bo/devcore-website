@@ -1,12 +1,13 @@
 .pricing-section {
-    border-top: 1px solid #e5e7eb;
     min-height: calc(100vh - var(--navbar-height));
+        background: radial-gradient(ellipse at bottom, #f0f4f8 0%, #ffffff 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 2rem 1rem;
+    /* Añadimos overflow-x para evitar barras de scroll horizontales durante la animación */
+    overflow-x: hidden;
 }
-
 
 .pricing-section__header {
     text-align: center;
@@ -16,14 +17,28 @@
     margin-right: auto;
 }
 
+/* --- INICIO: Cambios para la animación del título --- */
+
 .pricing-section__title {
     font-size: clamp(2rem, 4.5vw, 3rem);
     font-weight: 700;
-  color: var(--color-dark-blue); 
+    color: var(--color-dark-blue); 
     line-height: 1.2;
     margin: 0;
+    
+    /* 1. Estado inicial (antes de la animación) */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+/* 2. Estado final (cuando el contenedor tiene la clase .is-visible) */
+.pricing-section__header.is-visible .pricing-section__title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Opcional: Si añades un subtítulo, puedes animarlo con un retraso */
 .pricing-section__subtitle {
     font-size: clamp(1rem, 2vw, 1.1rem);
     color: #4b5563; 
@@ -31,7 +46,21 @@
     max-width: 55ch;
     margin-left: auto;
     margin-right: auto;
+    
+    /* Estado inicial para el subtítulo */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+.pricing-section__header.is-visible .pricing-section__subtitle {
+    opacity: 1;
+    transform: translateY(0);
+    /* Retraso para que aparezca después del título */
+    transition-delay: 0.2s; 
+}
+/* --- FIN: Cambios para la animación del título --- */
+
 
 .pricing-grid {
     display: grid;
@@ -44,9 +73,26 @@
 }
 
 
+.pricing-grid .pricing-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.pricing-grid.animate-in .pricing-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pricing-grid.animate-in .pricing-card:nth-child(2) { transition-delay: 0.1s; }
+.pricing-grid.animate-in .pricing-card:nth-child(3) { transition-delay: 0.2s; }
+.pricing-grid.animate-in .pricing-card:nth-child(4) { transition-delay: 0.3s; }
+
+
 @media (min-width: 768px) {
     .pricing-section {
         padding: 3rem 2rem;
+        
     }
 }
 
@@ -61,7 +107,7 @@
 @media (max-height: 720px) {
     .pricing-section {
         min-height: auto;
-        padding-top: 5rem;
-        padding-bottom: 5rem;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
     }
 }

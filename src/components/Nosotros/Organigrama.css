@@ -1,0 +1,158 @@
+.container-organigrama {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
+  width: 97%;
+  height: 90vh;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: -10px;
+}
+
+.container-tituloOr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+
+}
+.titulo{
+    font-size: 30px;
+    color: #001B48;
+}
+
+
+.container-card-organigramaprimero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ height: 220px; 
+  perspective: 1000px; 
+  padding: 20px;
+  border-radius: 15px;
+  width: 250px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.container-imagen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.fotografia {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.container-descripción {
+  text-align: center;
+}
+
+.nombre {
+  font-size: 20px;
+  margin: 0;
+}
+
+.descripcion {
+  font-size: 1.1rem;
+  margin: 5px 0 0 0;
+  font-style: italic;
+}
+
+
+.container-card-organigramasegundo {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap; 
+  width: 100%;
+}
+.tarjeta-desarrollador {
+  width: 200px;
+  height: 220px;           /* FIJA ALTURA para que el flip funcione bien */
+  perspective: 1000px;
+  margin: 10px;
+  /* background-color: #0099cc; */
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  /* quitar padding para evitar que afecte la altura interna */
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tarjeta-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;           /* Llena todo el contenedor padre */
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* hover sigue igual */
+.tarjeta-desarrollador:hover .tarjeta-inner {
+  transform: rotateY(180deg);
+}
+
+/* Frente y reverso */
+.tarjeta-front, .tarjeta-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px; /* para que no se pegue el contenido */
+  box-sizing: border-box;
+}
+
+.tarjeta-front {
+  background-color: #0099cc;
+  color: white;
+}
+
+.tarjeta-back {
+  background-color: #004d66;
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.tarjeta-desarrollador .fotografia {
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.tarjeta-desarrollador .nombre {
+  font-size: 20px;
+  margin: 0;
+}
+
+.tarjeta-desarrollador .descripcion {
+  font-size: 1rem;
+  font-style: italic;
+  margin: 0;
+}

@@ -1,9 +1,12 @@
+// src/components/Hero/Hero.jsx (Sin cambios, pero lo incluyo para confirmar)
+
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
 import logo from "../../assets/LogoNavDevCore.png";
 
 const Hero = () => {
   const [playKey, setPlayKey] = useState(0);
+
   useEffect(() => {
     const handler = () => {
       setPlayKey((k) => k + 1);
@@ -15,21 +18,16 @@ const Hero = () => {
 
   return (
     <section id="inicio" className="hero-section">
-      <div key={playKey} className="hero-grid">
-        <div className="hero-left">
-          <img src={logo} alt="DevCore" className="hero-logo" />
-        </div>
-        <div className="hero-right">
-          <h1 className="hero-title">DevCore</h1>
-          <p className="hero-subtitle">
-            Somos una empresa joven y dinámica, dedicada a crear soluciones
-            digitales con un enfoque humano y orientadas a tus necesidades.
-          </p>
-        </div>
+      <div key={playKey} className="hero-content">
+        <img src={logo} alt="DevCore Logo" className="hero-logo" />
+        <h1 className="hero-title">
+          AVANZAMOS CONTIGO EN LA ERA DIGITAL
+        </h1>
+        <p className="hero-subtitle">
+          Somos una empresa joven y dinámica, dedicada a crear soluciones
+          digitales con un enfoque humano y orientadas a tus necesidades.
+        </p>
       </div>
-      {}
-      <div className="hero-glow" />
-      <div className="hero-gradient-overlay" />
     </section>
   );
 };

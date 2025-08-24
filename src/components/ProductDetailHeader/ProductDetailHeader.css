@@ -1,33 +1,62 @@
-
-
+/* --- Contenedor Principal (sin cambios) --- */
 .product-header-section {
     position: relative;
-    /* Quitamos el fondo oscuro, ahora será transparente para ver la textura */
-    background: transparent;
-    color: var(--color-text-dark); /* Texto oscuro */
+    background: radial-gradient(ellipse at top, #f0f4f8 0%, #ffffff 100%);
+    color: var(--color-text-dark);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    text-align: center;
+    padding: 1rem;
     overflow: hidden;
 }
 
-.product-header-content {
-    max-width: 800px;
-    position: relative;
-    z-index: 2;
-    animation: fadeIn 1.2s ease-out both;
+
+.planes{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
 
-/* El título ahora usa un gradiente oscuro para ser legible */
+.product-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.header-text-content {
+    flex: 1;
+    text-align: left;
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.header-visual-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideInFromRight 1s ease-out forwards;
+}
+
+.product-logo {
+    max-width: 100%;
+    max-height: 550px;
+    object-fit: contain;
+    animation: float 6s ease-in-out infinite;
+}
+
 .product-title {
-    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
     line-height: 1.1;
-    margin: 0 0 1rem 0;
-    font-weight: 700;
+    padding-bottom: 10px;
+    margin: 0 0 1.5rem 0;
+    font-weight: 800;
     background: linear-gradient(90deg, var(--color-dark-blue), var(--color-cyan));
     -webkit-background-clip: text;
     background-clip: text;
@@ -37,63 +66,208 @@
 .product-description {
     font-size: clamp(1.1rem, 1.8vw, 1.3rem);
     line-height: 1.65;
-    /* Un color de texto secundario más suave */
     color: #4b5563; 
-    max-width: 65ch;
-    margin: 0 auto;
+    max-width: 55ch;
+    margin-bottom: 2rem;
 }
 
-/* El glow ahora es más sutil y se posiciona diferente */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, var(--color-dark-blue), var(--color-cyan));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 150, 255, 0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 150, 255, 0.4);
+}
+
+.cta-button .arrow-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
 .product-header-glow {
     position: absolute;
-    top: -20%;
-    left: -20%;
-    width: 60vw;
-    height: 60vw;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: 80vw;
+    max-width: 1000px;
+    max-height: 1000px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(closest-side, rgba(0, 191, 255, 0.2), transparent 80%);
-    filter: blur(80px); /* Más desenfoque */
+    background: radial-gradient(circle, rgba(0, 191, 255, 0.15), transparent 70%);
+    filter: blur(100px);
     pointer-events: none;
     z-index: 1;
 }
 
-.scroll-indicator {
+@keyframes slideInFromLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+    0% { opacity: 0; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- INICIO: Estilos para el fondo de partículas (ACTUALIZADO) --- */
+
+#stars, #stars2, #stars3 {
     position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-     color: var(--color-dark-blue); /* Color oscuro */
-    opacity: 0.8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    animation: bounce 2s infinite;
-      background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-family: inherit;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
 }
 
-.scroll-indicator span {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+/* CAMBIO: Más partículas, más rápido y en tono azul claro */
+#stars {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    188px 1819px #87CEFA, 1528px 1195px #87CEFA, 1195px 1017px #87CEFA, 1732px 1475px #87CEFA,
+    249px 1535px #87CEFA, 1283px 1222px #87CEFA, 1918px 1083px #87CEFA, 32px 1173px #87CEFA,
+    1210px 185px #87CEFA, 583px 872px #87CEFA, 1429px 1982px #87CEFA, 1032px 556px #87CEFA,
+    1888px 112px #87CEFA, 745px 1639px #87CEFA, 1601px 744px #87CEFA, 304px 34px #87CEFA,
+    1999px 1357px #87CEFA, 801px 934px #87CEFA, 45px 1987px #87CEFA, 932px 121px #87CEFA,
+    1345px 654px #87CEFA, 1789px 1234px #87CEFA, 621px 432px #87CEFA, 1500px 1800px #87CEFA,
+    10px 1450px #87CEFA, 1950px 200px #87CEFA, 876px 1543px #87CEFA, 333px 999px #87CEFA,
+    1654px 321px #87CEFA, 543px 1789px #87CEFA, 1212px 1313px #87CEFA, 187px 834px #87CEFA;
+  animation: animStar 30s linear infinite;
+}
+#stars:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    188px 1819px #87CEFA, 1528px 1195px #87CEFA, 1195px 1017px #87CEFA, 1732px 1475px #87CEFA,
+    249px 1535px #87CEFA, 1283px 1222px #87CEFA, 1918px 1083px #87CEFA, 32px 1173px #87CEFA,
+    1210px 185px #87CEFA, 583px 872px #87CEFA, 1429px 1982px #87CEFA, 1032px 556px #87CEFA,
+    1888px 112px #87CEFA, 745px 1639px #87CEFA, 1601px 744px #87CEFA, 304px 34px #87CEFA,
+    1999px 1357px #87CEFA, 801px 934px #87CEFA, 45px 1987px #87CEFA, 932px 121px #87CEFA,
+    1345px 654px #87CEFA, 1789px 1234px #87CEFA, 621px 432px #87CEFA, 1500px 1800px #87CEFA,
+    10px 1450px #87CEFA, 1950px 200px #87CEFA, 876px 1543px #87CEFA, 333px 999px #87CEFA,
+    1654px 321px #87CEFA, 543px 1789px #87CEFA, 1212px 1313px #87CEFA, 187px 834px #87CEFA;
 }
 
-.scroll-indicator svg {
-    width: 24px;
-    height: 24px;
+/* CAMBIO: Más partículas, más rápido y en tono azul medio */
+#stars2 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 
+    419px 1603px #1E90FF, 1944px 197px #1E90FF, 1243px 1435px #1E90FF, 182px 1220px #1E90FF,
+    1686px 1481px #1E90FF, 482px 340px #1E90FF, 1091px 1983px #1E90FF, 1333px 888px #1E90FF,
+    670px 1100px #1E90FF, 22px 540px #1E90FF, 918px 222px #1E90FF, 1573px 1777px #1E90FF,
+    1111px 1212px #1E90FF, 843px 18px #1E90FF, 1445px 654px #1E90FF, 72px 845px #1E90FF,
+    1701px 1984px #1E90FF, 555px 666px #1E90FF, 1298px 324px #1E90FF, 999px 1444px #1E90FF,
+    201px 101px #1E90FF, 1823px 1600px #1E90FF, 357px 1357px #1E90FF, 1432px 987px #1E90FF;
+  animation: animStar 60s linear infinite;
+}
+#stars2:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+    box-shadow: 
+    419px 1603px #1E90FF, 1944px 197px #1E90FF, 1243px 1435px #1E90FF, 182px 1220px #1E90FF,
+    1686px 1481px #1E90FF, 482px 340px #1E90FF, 1091px 1983px #1E90FF, 1333px 888px #1E90FF,
+    670px 1100px #1E90FF, 22px 540px #1E90FF, 918px 222px #1E90FF, 1573px 1777px #1E90FF,
+    1111px 1212px #1E90FF, 843px 18px #1E90FF, 1445px 654px #1E90FF, 72px 845px #1E90FF,
+    1701px 1984px #1E90FF, 555px 666px #1E90FF, 1298px 324px #1E90FF, 999px 1444px #1E90FF,
+    201px 101px #1E90FF, 1823px 1600px #1E90FF, 357px 1357px #1E90FF, 1432px 987px #1E90FF;
+}
+/* CAMBIO: Más partículas, más rápido y en tono azul intenso */
+#stars3 {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  box-shadow: 
+    936px 166px #4169E1, 882px 1461px #4169E1, 356px 632px #4169E1, 1001px 815px #4169E1,
+    1724px 259px #4169E1, 1363px 1303px #4169E1, 123px 999px #4169E1, 1876px 543px #4169E1,
+    666px 1666px #4169E1, 1500px 1500px #4169E1, 444px 1122px #4169E1, 1980px 890px #4169E1,
+    1621px 1823px #4169E1, 289px 128px #4169E1, 1145px 1045px #4169E1, 1901px 1902px #4169E1,
+    813px 402px #4169E1, 1399px 23px #4169E1, 101px 502px #4169E1, 1776px 1234px #4169E1;
+  animation: animStar 90s linear infinite;
+}
+#stars3:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  box-shadow: 
+    936px 166px #4169E1, 882px 1461px #4169E1, 356px 632px #4169E1, 1001px 815px #4169E1,
+    1724px 259px #4169E1, 1363px 1303px #4169E1, 123px 999px #4169E1, 1876px 543px #4169E1,
+    666px 1666px #4169E1, 1500px 1500px #4169E1, 444px 1122px #4169E1, 1980px 890px #4169E1,
+    1621px 1823px #4169E1, 289px 128px #4169E1, 1145px 1045px #4169E1, 1901px 1902px #4169E1,
+    813px 402px #4169E1, 1399px 23px #4169E1, 101px 502px #4169E1, 1776px 1234px #4169E1;
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+/* --- FIN: Estilos para el fondo de partículas --- */
+
+
+/* --- Diseño Adaptable (sin cambios) --- */
+@media (max-width: 900px) {
+    .product-header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
     }
-    40% {
-        transform: translateY(-10px);
+
+    .header-text-content {
+        text-align: center;
+        order: 2;
     }
-    60% {
-        transform: translateY(-5px);
+
+    .header-visual-content {
+        order: 1;
+    }
+
+    .product-description {
+        margin-left: auto;
+        margin-right: auto;
     }
 }

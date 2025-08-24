@@ -1,13 +1,20 @@
-/* Archivo: src/components/Navbar/Navbar.css - VERSIÓN CORRECTA */
+/* Archivo: src/components/Navbar/Navbar.css - VERSIÓN CORREGIDA */
 
 .navbar {
-    background-color: #0d2856;
-    padding: 1rem 2rem;
-    position: sticky;
+    background-color: transparent;
+    padding: 0.2rem 2rem;
+    position: fixed;
     top: 0;
+    left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
     width: 100%;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.navbar.solid-bg {
+    background-color: #0d2856;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-container {
@@ -69,6 +76,7 @@
     position: relative;
     transition: color 0.3s ease;
     white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .navbar-links a:hover {
@@ -106,8 +114,30 @@
 }
 
 .btn-outline {
-    color: #fff;
+    color: #00bfff;
+    background: transparent;
     border: 2px solid #00bfff;
+    transition: all 0.3s ease;
+}
+
+.navbar:not(.solid-bg) .btn-outline {
+    background: linear-gradient(90deg, #00c6ff, #00dfd8);
+    border-color: transparent;
+    color: #fff;
+    font-weight: 600;
+}
+
+.navbar:not(.solid-bg) .btn-outline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 223, 216, 0.4);
+    filter: brightness(1.1);
+}
+
+.navbar.solid-bg .btn-outline:hover {
+    background-color: #00bfff;
+    color: #0d2856;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
 }
 
 .btn-outline:hover {
@@ -117,18 +147,6 @@
     box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
 }
 
-.btn-primary {
-    color: #0d2856;
-    background-color: #00bfff;
-    border: 2px solid #00bfff;
-}
-
-.btn-primary:hover {
-    background-color: #fff;
-    border-color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-}
 @media (max-width: 1200px) {
     .navbar-links {
         gap: 1.5rem;
@@ -160,23 +178,23 @@
         gap: 1rem;
     }
 
-    /* En móvil: 1 sola fila, desplazable horizontalmente */
     .navbar-links-wrapper {
         order: 3;
         width: 100%;
-        justify-content: flex-start; /* inicia a la izquierda */
-        overflow-x: auto; /* permite scroll horizontal */
+        justify-content: flex-start;
+        overflow-x: auto;
         overflow-y: hidden;
-        -ms-overflow-style: none; /* IE/Edge */
-        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
+
     .navbar-links-wrapper::-webkit-scrollbar {
         display: none;
-    } /* Chrome/Safari */
+    }
 
     .navbar-links {
         gap: 1rem;
-        flex-wrap: nowrap; /* <- clave: no romper línea */
+        flex-wrap: nowrap;
         white-space: nowrap;
         justify-content: flex-start;
     }

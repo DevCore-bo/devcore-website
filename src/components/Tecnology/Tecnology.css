@@ -1,0 +1,26 @@
+.cont_tecno {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    column-gap: 50px;
+    row-gap: 60px;
+    width: 100%;
+}
+
+.img_tec {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.img_tec img {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.img_tec img:hover {
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+    transform: scale(1.1); /* aumenta un 10% al pasar el mouse */
+}
