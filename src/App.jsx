@@ -69,11 +69,8 @@ function App() {
                 </section>
 
                 <section id="productos">
-                  <div className="cont_produc">
-                    <h1 className="style_title">Nuestros Productos</h1>
                     <Products />
                     <ProductosBotones /> {/* Botones con links a detalles */}
-                  </div>
                 </section>
 
                 <section id="contactanos" className="sec2">

@@ -13,6 +13,11 @@
 }
 
 :root {
+  --navy-blue: #001B48;
+  --turquoise-light: #21D0B2;
+  --sky-blue: #1DCDFE;
+  --purple: #851CF6;
+
   --color-dark-blue: #0d2856;
   --color-medium-blue: #1a252f;
   --color-light-blue: #2c3e50;
@@ -78,7 +83,8 @@ section h1 {
 }
 
 #inicio {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
+  margin-top: -70px;
+  height: 100vh;
 }
 
 #nosotros {

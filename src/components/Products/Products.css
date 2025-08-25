@@ -1,62 +1,115 @@
-.cont_product {
+.cont-product {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    gap: 60px;
-    height: 70vh;
-}
-
-.cont_cardP {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background: hsl(0 0% 100%);
-    height: 450px;
-    width: 20%;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
-    /* font-family: "poppins"; */
-    transition: transform 0.3s ease;
-}
-
-.cont_cardP:hover {
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-    transform: scale(1.1); /* aumenta un 10% al pasar el mouse */
-}
-
-.cont_cardP img {
+    height: 100%;
     width: 100%;
-    height: 200px;
-    border-radius: 15px 15px 0 0;
 }
 
-.cont_cardP h1 {
-    font-size: 24px;
-    color: #21D0B2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+.cont-title-pro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: "Raleway";
+    font-size: 25px;
+    color: var(--navy-blue);
+    padding: 20px 0 20px 0;
 }
 
-.cont_cardP p {
-    font-size: 18px;
+.cont-card-pro {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    gap: 10px;
+}
+
+.cont-cardP {
+    display: flex;
+    flex-direction: column;
+    height: 520px;
+    width: 400px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 10px;
-    color: #02033B;
 }
 
-.button_produc {
-    color: #FFFFFF;
+.cont-cardP:hover {
+    transform: scale(1.05);
+}
+
+.cont-ima-pro {
+    height: 40%;
+    padding: 0 50px 0 50px;
+}
+
+.cont-card-pro img {
+    height: 100%;
+}
+
+.cont-desc-pro {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cont-desc-pro h2 {
+    color: var(--turquoise-light);
+    font-size: 30px;
+    font-family: "Raleway";
+}
+
+.cont-desc-pro p {
+    color: var(--navy-blue);
     font-size: 18px;
-    font-weight: bold;
-    border-radius: 10px;
-    height: 40px;
-    width: 140px;
-    border: 2px solid #001B48;
-    background-color: #001B48;
-    transition: background-color 0.3s ease, color 0.3s ease; /* animación suave */
-    cursor: pointer;
+    font-family: "Poppins";
 }
 
-.button_produc:hover {
-    border: 2px solid #21D0B2;
-    background-color: #21D0B2; /* fondo aqua */
-    color: white;              /* texto blanco para contraste */
+.cont-button-pro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.button-pro {
+    border-radius: 10px;
+    background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
+    border: none;
+    height: 60px;
+    width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Poppins";
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.button-pro:hover {
+    background: linear-gradient(45deg, var(--navy-blue), var(--purple));
+    transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+    .cont-card-pro {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cont-desc-pro h2 {
+        font-size: 20px;
+        font-family: "Raleway";
+    }
+
+    .cont-desc-pro p {
+        color: var(--navy-blue);
+        font-size: 12px;
+        font-family: "Poppins";
+    }
 }
