@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Auth.css";
-import "../Navbar/Navbar.css";
 import "../Hero/Hero.css"
 import logo from "../../assets/LogoNavDevCore.png";
 
@@ -29,9 +28,9 @@ const Login = () => {
       <div className="auth-content">
         <div className="auth-left" key={playKey}>
           <img src={logo} alt="DevCore Logo" className="hero-logo" />
-          <h1 className="hero-title">Accede y potencia tu desarrollo en DevCore</h1>
+          <h1 className="hero-title">Continúa tu evolución en DevCore</h1>
           <p className="hero-subtitle">
-            Bienvenido a DevCore, el espacio donde nuestros desarrolladores impulsan la innovación. Ingresa para acceder a las herramientas, proyectos y recursos que potencian la creación de soluciones digitales con visión, pasión y excelencia tecnológica.
+            Bienvenido de nuevo a DevCore. Ingresa y retoma tu viaje en un espacio diseñado para potenciar tus proyectos, compartir experiencias y seguir impulsando la innovación junto a nuestra comunidad de desarrolladores.
           </p>
         </div>
 
@@ -56,10 +55,10 @@ const Login = () => {
               />
             </div>
             <div className="auth-actions">
-              <button type="submit" className="btn btn-outline">
+              <button type="submit" className="boton">
                 Ingresar
               </button>
-              <a href="/register" className="btn btn-outline">
+              <a href="/register" className="boton">
                 Registrarse
               </a>
             </div>

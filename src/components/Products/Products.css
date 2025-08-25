@@ -30,8 +30,8 @@
 .cont-cardP {
     display: flex;
     flex-direction: column;
-    height: 520px;
-    width: 400px;
+    height: 430px;
+    width: 350px;
     background-color: #FFFFFF;
     border-radius: 20px;
     transition: all 0.3s ease;
@@ -82,7 +82,7 @@
     border-radius: 10px;
     background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
     border: none;
-    height: 60px;
+    height: 50px;
     width: 200px;
     cursor: pointer;
     transition: all 0.3s ease;

@@ -3,21 +3,22 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('https://img.freepik.com/vector-premium/fondo-tecnologico-digital_97458-208.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center center;
+  /* background: url('./assets/Frame25.png'); */
+  background: url('https://img.freepik.com/vector-premium/diagrama-circuito-azul-tecnologia-sobre-fondo-blanco-sistema-conexion-placa-circuito-alta-tecnologia-tecnologia-abstracta-vectorial-sobre-fondo-blanco_387612-717.jpg') no-repeat center center;
   background-size: cover;
   padding: 2rem;
-  color: white;
+  color: #001B48;
 }
 
 .auth-content {
   display: flex;
+  margin-top: 6%;
   justify-content: center;   /* centra horizontalmente */
   align-items: center;       /* centra verticalmente */
   border-radius: 12px;
   overflow: hidden;
   width: 90%;
   height: 100%;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
 }
 
 
@@ -59,14 +60,40 @@
 
 .auth-card-login {
   background: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   padding: 30px;
   border-radius: 8px;
-  width: 35%;
+  width: 33%;
   height: 55vh;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 25px 0px rgba(23, 2, 114, 0.7);
 }
 
 .auth-card-login h2 {
+  text-align: center;
+  color: #001B48;
+  font-size: 25px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.auth-card-register {
+  background: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: 8px;
+  width: 33%;
+  height: 75vh;
+  box-shadow: 0px 0px 25px 0px rgba(23, 2, 114, 0.7);
+}
+
+.auth-card-register h2 {
   text-align: center;
   color: #001B48;
   font-size: 25px;
@@ -79,6 +106,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  width: 50vh;
 }
 
 .auth-field label {
@@ -100,18 +128,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 8%;
+  margin-left: 5%;
+  width: 90%;
 }
 
-.btn {
-    padding: 0.8rem 1.5rem;
+.boton {
+    padding: 0.7rem 1.2rem;
     border-radius: 12px;
+    border: 2px solid #001B48;
     text-decoration: none;
+    color: #001B48;
+    background-color: transparent;
     font-weight: 600;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
     white-space: nowrap;
 }
 
-.btn-outline {
+.boton:hover {
     color: #00bfff;
     background: transparent;
     border: 2px solid #00bfff;
