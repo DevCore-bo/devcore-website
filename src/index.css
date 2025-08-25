@@ -65,6 +65,7 @@ body {
   min-height: 100vh;
 }
 main {
+  padding-top: 70px;
   width: 100%;
 }
 section {

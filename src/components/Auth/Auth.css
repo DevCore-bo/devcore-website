@@ -12,16 +12,14 @@
 
 .auth-content {
   display: flex;
-  margin-top: 6%;
-  justify-content: center;   /* centra horizontalmente */
-  align-items: center;       /* centra verticalmente */
+  margin-top: -4%;
+  justify-content: center;
+  align-items: center;
   border-radius: 12px;
   overflow: hidden;
   width: 90%;
   height: 100%;
 }
-
-
 
 .auth-left {
   flex: 1;
