@@ -45,7 +45,7 @@ const ContactForm = () => {
           value={formData.consulta}
           onChange={handleChange("consulta")}
         />
-        <button type="submit">Enviar Consulta</button>
+        <button className="boton" type="submit">Enviar Consulta</button>
       </form>
     </div>
   );

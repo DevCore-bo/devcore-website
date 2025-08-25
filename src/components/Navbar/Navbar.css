@@ -118,6 +118,7 @@
     background: transparent;
     border: 2px solid #00bfff;
     transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 .navbar:not(.solid-bg) .btn-outline {

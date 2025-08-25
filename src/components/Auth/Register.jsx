@@ -21,7 +21,7 @@ const Register = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
+      <div className="auth-card-register">
         <h2>Registrarse</h2>
         <form onSubmit={handleSubmit}>
           <div className="auth-field">

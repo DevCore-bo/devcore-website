@@ -2,19 +2,71 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
-  background-color: #e9f0f8;
+  min-height: 100vh;
+  background: url('https://img.freepik.com/vector-premium/fondo-tecnologico-digital_97458-208.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center center;
+  background-size: cover;
+  padding: 2rem;
+  color: white;
 }
 
-.auth-card {
+.auth-content {
+  display: flex;
+  justify-content: center;   /* centra horizontalmente */
+  align-items: center;       /* centra verticalmente */
+  border-radius: 12px;
+  overflow: hidden;
+  width: 90%;
+  height: 100%;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+}
+
+
+
+.auth-left {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: moveLeft 1s ease-out;
+}
+
+.auth-logo {
+  width: 50%;
+  margin-bottom: 1rem;
+}
+
+.auth-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.auth-subtitle {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.auth-card-login {
   background: white;
   padding: 30px;
   border-radius: 8px;
-  width: 350px;
+  width: 35%;
+  height: 55vh;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.auth-card h2 {
+.auth-card-login h2 {
   text-align: center;
   color: #001B48;
   font-size: 25px;
@@ -39,7 +91,7 @@
 
 .auth-field input {
   padding: 8px;
-  border: 1px solid #0caea0;
+  border: 1px solid #00bfff;
   border-radius: 4px;
   outline: none;
 }
@@ -48,4 +100,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-outline {
+    color: #00bfff;
+    background: transparent;
+    border: 2px solid #00bfff;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }

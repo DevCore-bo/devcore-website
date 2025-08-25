@@ -5,15 +5,13 @@ import "./Contactanos.css";
 
 const Contactanos = () => {
   return (
-    <section id="contactanos" className="contactanos-section">
-        <h2>CONTÁCTANOS</h2>
-      <div className="contactanos-container">
-        
+    <div className="contactanos-section">
+        <h2 className="titulo">CONTÁCTANOS</h2>
+      <div className="contactanos-container">  
         <ContactInfo />
         <ContactForm />
-
       </div>
-    </section>
+    </div>
   );
 };
 

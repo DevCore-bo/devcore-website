@@ -54,18 +54,12 @@ function App() {
                 </section>
 
                 <section id="tecnologias">
-                  <div className="cont_tec">
-                    <h1>Tecnologías</h1>
-                    <Tecnology />
-                  </div>
+                  <Tecnology />
                 </section>
 
                 <section id="productos">
-                  <div className="cont_produc">
-                    <h1 className="style_title">Nuestros Productos</h1>
-                    <Products />
-                    <ProductosBotones /> {/* Botones con links a detalles */}
-                  </div>
+                  <Products />
+                  <ProductosBotones /> {/* Botones con links a detalles */}
                 </section>
 
                 <section id="contactanos" className="sec2">

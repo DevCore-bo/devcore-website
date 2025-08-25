@@ -121,6 +121,13 @@ const Navbar = () => {
           >
             Ingresar
           </button>
+
+          <button
+            className="btn btn-outline"
+            onClick={() => navigate("/register")}
+          >
+            Registrarse
+          </button>
         </div>
       </div>
     </nav>

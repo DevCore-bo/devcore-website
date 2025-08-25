@@ -52,6 +52,7 @@ section h1 {
   background-position: center;
 }
 
+
 @media (max-width: 768px) {
   section {
     font-size: 1.8rem;
