@@ -9,7 +9,7 @@ const MapEmbed = () => {
       height="70%"
       style={{
         border: "2px solid #001B48", // Azul marino
-        borderRadius: "4px",
+        borderRadius: "10px",
         outline: "none",
       }}
       allowFullScreen=""

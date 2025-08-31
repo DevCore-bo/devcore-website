@@ -8,6 +8,7 @@ section {
   color: #fff;
   width: 100%;
   text-align: center;
+  scroll-margin-top: 70px; 
 }
 
 .style_title {

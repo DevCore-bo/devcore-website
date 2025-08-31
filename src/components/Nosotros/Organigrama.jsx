@@ -1,14 +1,14 @@
 import React from "react";
 import "./Organigrama.css";
-import nataliaImage from "../../assets/natalia.jpeg"; // Para Natalia
-import mikaelaImage from "../../assets/mikaela.jpeg"; // Agrega las imágenes que tengas
+import nataliaImage from "../../assets/natalia.jpeg";
+import mikaelaImage from "../../assets/mikaela.jpeg"; 
 import fabricioImage from "../../assets/fabricio.jpeg";
 import claudiaImage from "../../assets/claudia.jpeg";
 import aldahirImage from "../../assets/aldahir.jpeg";
 import organigramaImage from "../../assets/Organigrama.png"
 
 function Organigrama() {
-    
+
     const desarrolladores = [
         { nombre: "Natalia  Lozano", descripcion: "Desarrolladora", foto: nataliaImage },
         { nombre: "Mikaela Gisbert", descripcion: "Desarrolladora", foto: mikaelaImage },
@@ -20,13 +20,16 @@ function Organigrama() {
     return (
 
         <div className="container-organigrama">
+            <div id="stars"></div>
+            <div id="stars2"></div>
+            <div id="stars3"></div>
             <div className="container-titulo-or">
                 <h1>ORGANIGRAMA</h1>
             </div>
             <div className="containerOganigrama">
                 <img className="imageOrganigrama" src={organigramaImage} alt="Organigrma" />
             </div>
-            <h1>Desarrolladores Destacados</h1>
+            <h1 className="titleTwo">Desarrolladores Destacados</h1>
             {/* <div className="container-card-organigramaprimero tarjeta-desarrollador">
                 
                 <div className="tarjeta-inner">
@@ -51,7 +54,7 @@ function Organigrama() {
 
 
             <div className="container-card-organigramasegundo">
-                
+
                 {desarrolladores.map(({ nombre, descripcion, foto }) => (
                     <div key={nombre} className="tarjeta-desarrollador">
                         <div className="tarjeta-inner">

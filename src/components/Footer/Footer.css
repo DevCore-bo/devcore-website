@@ -2,6 +2,8 @@
     background: #0d2856;
     color: #eaf6ff;
     padding: 2.2rem 1rem 1.2rem;
+    position: relative;
+  z-index: 2;
 }
 
 .footer-inner {

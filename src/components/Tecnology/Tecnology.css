@@ -4,6 +4,7 @@
     justify-content: center;
     height: 100%;
     width: 100%;
+    background-color: aqua;
 }
 
 .cont_title_tec {
@@ -14,15 +15,18 @@
     font-family: "Raleway";
     font-size: 25px;
     color: var(--navy-blue);
-    padding: 20px 0 20px 0;
+    padding: 0 0 20px 0;
+    background-color: blue;
 }
 
 .cont_body_tec {
     display: flex;
     justify-content: center;
     flex-wrap: wrap; 
-    column-gap: 80px; 
+    column-gap: 80px;
+    row-gap: 20px; 
     height: 100%;
+    background-color: blueviolet;
 }
 
 .img_tec {

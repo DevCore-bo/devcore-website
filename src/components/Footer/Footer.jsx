@@ -52,6 +52,16 @@ export default function Footer() {
               </a>
             </li>
             <li>
+              <a className="product-link" href="#nosotros">
+                <span className="product-badge" aria-hidden>
+                  <svg viewBox="0 0 24 24" className="svg">
+                    <path d="M7 2h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm0 6h10V5a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v3Zm2 5h2v2H9v-2Zm0 3.5h2V19H9v-2.5Zm4-3.5h2v2h-2v-2Zm0 3.5h2V19h-2v-2.5Z" />
+                  </svg>
+                </span>
+                <span>Nosotros</span>
+              </a>
+            </li>
+            <li>
               <a className="product-link" href="#tecnologias">
                 <span className="product-badge" aria-hidden>
                   <svg viewBox="0 0 24 24" className="svg">

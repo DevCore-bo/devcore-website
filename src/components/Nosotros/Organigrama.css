@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  margin-top: 100px;
-  background: url('./assets/Frame27.png');
+  margin-top: 20px;
+  position: relative; /* importante */
+  z-index: 1;
 }
 
 .container-titulo-or {
@@ -17,20 +17,36 @@
   width: 100%;
   height: auto;
   color: var(--navy-blue);
+  position: relative;
+  z-index: 2;
 
+}
+.container-titulo-or h1{
+  font-family: 'Raleway';
+  color: var(--navy-blue);
+  position: relative;
+  z-index: 2;
+}
+.titleTwo {
+  font-family: 'Raleway';
+  color: var(--navy-blue);
+  position: relative;
+  z-index: 2;
 }
 .containerOganigrama{
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1%;
-  /* background: url('../../assets/Frame27.png'); */
+
 }
 .imageOrganigrama{
-  width: 82%;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
 
 }
 
@@ -40,7 +56,7 @@
   align-items: center;
   height: 220px;
   perspective: 1000px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 15px;
   width: 250px;
   color: white;
@@ -87,12 +103,13 @@
   width: 100%;
   margin: 2%;
   /* background: url('../../assets/Frame27.png'); */
+  position: relative;
+  z-index: 2;
 }
 
 .tarjeta-desarrollador {
   width: 200px;
   height: 220px;
-
   perspective: 1000px;
   margin: 10px;
   /* background-color: #0099cc; */
@@ -100,7 +117,6 @@
   color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-
   padding: 0;
   display: flex;
   justify-content: center;
@@ -134,7 +150,6 @@
   align-items: center;
   justify-content: center;
   padding: 15px;
-  
   box-sizing: border-box;
 }
 
@@ -169,4 +184,59 @@
   font-size: 1rem;
   font-style: italic;
   margin: 0;
+}
+
+@media (max-width: 800px) {
+.titleTwo {
+  font-size: 30px;
+}
+.tarjeta-desarrollador {
+  width: 180px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 1px;
+}
+.tarjeta-desarrollador .fotografia {
+  width: 98px;
+  height: 98px;
+  border: 1px solid white;
+  margin-bottom: 5px;
+}
+
+.tarjeta-desarrollador .nombre {
+  font-size: 17px;
+  margin: 0;
+}
+
+.tarjeta-desarrollador .descripcion {
+  font-size: 1rem;
+}
+}
+
+@media (max-width: 450px) {
+  .titleTwo {
+  font-size: 25px;
+}
+.tarjeta-desarrollador {
+  width: 180px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 1px;
+}
+.tarjeta-desarrollador .fotografia {
+  width: 95px;
+  height: 95px;
+  border: 1px solid white;
+  margin-bottom: 5px;
+}
+
+.tarjeta-desarrollador .nombre {
+  font-size: 16px;
+  margin: 0;
+}
+
+.tarjeta-desarrollador .descripcion {
+  font-size: 0.9rem;
+}
+
 }
