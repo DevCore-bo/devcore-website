@@ -16,7 +16,7 @@
     font-size: 25px;
     color: var(--navy-blue);
     padding: 0 0 20px 0;
-    background-color: blue;
+
 }
 
 .cont_body_tec {
@@ -26,7 +26,7 @@
     column-gap: 80px;
     row-gap: 20px; 
     height: 100%;
-    background-color: blueviolet;
+
 }
 
 .img_tec {
