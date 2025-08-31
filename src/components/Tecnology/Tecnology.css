@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    height: calc(100vh - 70px);
     width: 100%;
 }
 
@@ -14,14 +14,15 @@
     font-family: "Raleway";
     font-size: 25px;
     color: var(--navy-blue);
-    padding: 20px 0 20px 0;
+    padding: 30px 0 30px 0;
 }
 
 .cont_body_tec {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; 
-    column-gap: 80px; 
+    flex-wrap: wrap;
+    column-gap: 80px;
+    row-gap: 20px;
     height: 100%;
 }
 
@@ -30,7 +31,7 @@
     background: #fff;
     height: 110px;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .img_tec img {
@@ -39,30 +40,46 @@
 }
 
 .img_tec img:hover {
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
 }
 
-@media (max-width: 975px) {
-    .cont_body_tec {
-        flex-wrap: nowrap;         
-        overflow-x: auto;      
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory; 
-        -webkit-overflow-scrolling: touch;
-        gap: 16px;
-        padding: 16px;
-        align-items: center;
-        justify-content: flex-start;
+@media (max-width: 800px) {
+    .cont_tec {
+        height: calc(100vh - 190px);
+        width: 100%;
     }
 
-    .cont_body_tec::-webkit-scrollbar {
-        display: none; /* oculta scrollbar */
+    .cont_title_tec {
+        font-size: 20px;
+    }
+
+    .cont_body_tec {
+        column-gap: 40px;
+        row-gap: 10px;
     }
 
     .img_tec {
-        flex: 0 0 150px;  /* ancho fijo más pequeño */
-        height: 150px;
-        scroll-snap-align: center; /* cada tarjeta se alinea al centro */
+        height: 80px;
+    }
+}
+
+@media (max-width: 450px) {
+    .cont_tec {
+        height: calc(100vh - 220px);
+        width: 100%;
+    }
+
+    .cont_title_tec {
+        font-size: 16px;
+    }
+
+    .cont_body_tec {
+        column-gap: 40px;
+        row-gap: 10px;
+    }
+
+    .img_tec {
+        height: 60px;
     }
 }
