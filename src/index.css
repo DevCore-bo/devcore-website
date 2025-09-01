@@ -7,14 +7,14 @@
 
 #root {
   width: 100%;
-  height: auto;
+  height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 :root {
   --navy-blue: #001B48;
-  --turquoise-light: #07584b;
+  --turquoise-light: #21d0b2;
   --sky-blue: #1DCDFE;
   --purple: #851CF6;
 
