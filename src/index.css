@@ -7,14 +7,14 @@
 
 #root {
   width: 100%;
-  height: 100vh;
-  overflow-y: auto; 
+  height: auto;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
 :root {
   --navy-blue: #001B48;
-  --turquoise-light: #21D0B2;
+  --turquoise-light: #07584b;
   --sky-blue: #1DCDFE;
   --purple: #851CF6;
 
@@ -23,11 +23,12 @@
   --color-light-blue: #2c3e50;
   --color-cyan: #00bfff;
   --color-bright-cyan: #00dfd8;
-  --color-text-dark: #1f2937; 
+  --color-text-dark: #1f2937;
   --color-text-secondary: #4b5563;
   --color-text-light: #eaf6ff;
-  --color-background-light: #f8f9fa; /* Blanco ligeramente cálido */
-  
+  --color-background-light: #f8f9fa;
+  /* Blanco ligeramente cálido */
+
   --navbar-height: 80px;
 }
 
@@ -50,24 +51,23 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
 body::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
+
 body {
   scrollbar-width: none;
-}
-body {
   -ms-overflow-style: none;
+
 }
-#root {
-  width: 100%;
-  min-height: 100vh;
-}
+
 main {
   padding-top: 70px;
   width: 100%;
 }
+
 section {
   display: flex;
   justify-content: center;

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    height: calc(100vh - 70px);
     width: 100%;
 }
 
@@ -30,7 +30,7 @@
 .cont-cardP {
     display: flex;
     flex-direction: column;
-    height: 380px;
+    height: 420px;
     width: 350px;
     background-color: #FFFFFF;
     border-radius: 20px;
@@ -96,20 +96,47 @@
     transform: scale(1.05);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
+    .cont-ima-pro {
+        height: 40%;
+        padding: 0 20px 0 20px;
+    }
+}
+
+@media (max-width: 800px) {
+    .cont-title-pro {
+        font-size: 18px;
+        padding: 10px 0 10px 0;
+    }
+
     .cont-card-pro {
         display: flex;
         flex-direction: column;
     }
 
+    .cont-cardP {
+        display: flex;
+        flex-direction: column;
+        height: 260px;
+        width: 250px;
+    }
+
+    .cont-ima-pro {
+        height: 40%;
+        padding: 0 20px 0 20px;
+    }
+
     .cont-desc-pro h2 {
-        font-size: 20px;
-        font-family: "Raleway";
+        font-size: 18px;
     }
 
     .cont-desc-pro p {
-        color: var(--navy-blue);
         font-size: 12px;
-        font-family: "Poppins";
+    }
+
+    .button-pro {
+        height: 40px;
+        width: 120px;
+        font-size: 14px;
     }
 }
