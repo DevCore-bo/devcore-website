@@ -7,7 +7,7 @@ import Hero from "./components/Hero/Hero";
 import Footer from "./components/Footer/Footer";
 import ScrollTop from "./components/utils/ScrollTop";
 import ProductDetailsPage from "./pages/ProductDetails";
-
+import Home from "./pages/Home";
 // Aldahir
 import Tecnology from "./components/Tecnology/Tecnology";
 import Products from "./components/Products/Products";
@@ -76,6 +76,7 @@ function App() {
           <Route path="/organigrama" element={<Organigrama />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
 
           {/* Página no encontrada */}
           <Route path="*" element={<h1>404: Página no encontrada</h1>} />

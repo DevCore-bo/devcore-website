@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
 import "./Contactanos.css";
+import Swal from "sweetalert2"; // ✅ Importa SweetAlert2
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,26 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Consulta enviada:\n" + JSON.stringify(formData, null, 2));
+
+    // Aquí reemplazamos el alert por SweetAlert2
+    Swal.fire({
+      title: "¡Consulta enviada!",
+      text: `Gracias ${formData.nombre}, nos pondremos en contacto contigo pronto.`,
+      icon: "success",
+      confirmButtonText: "Aceptar",
+      customClass: {
+        popup: "custom-popup",
+        confirmButton: "custom-confirm-button",
+      },
+    });
+
+    // Limpiamos el formulario
+    setFormData({
+      nombre: "",
+      correo: "",
+      telefono: "",
+      consulta: "",
+    });
   };
 
   return (

@@ -48,7 +48,7 @@
     font-weight: 700;
     line-height: 1.25;
     text-transform: uppercase;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    /* text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); */
     animation: fadeUpText 1s 0.2s ease-out both;
 }
 
@@ -57,7 +57,7 @@
     line-height: 1.7;
     max-width: 55ch;
     opacity: 0.95;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    /* text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8); */
     animation: fadeUpText 1s 0.4s ease-out both;
 }
 
