@@ -91,10 +91,10 @@ const Login = () => {
               />
             </div>
             <div className="auth-actions">
-              <button type="submit" className="boton">
+              <button className="button-pro" type="submit">
                 Ingresar
               </button>
-              <a href="/register" className="boton">
+              <a href="/register" className="button-pro">
                 Registrarse
               </a>
             </div>

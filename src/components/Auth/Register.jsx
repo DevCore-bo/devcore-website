@@ -133,10 +133,10 @@ const handleSubmit = async (e) => {
               />
             </div>
             <div className="auth-actions">
-              <button type="submit" className="boton">
+              <button type="submit" className="button-pro">
                 Registrarse
               </button>
-              <a href="/login" className="boton">
+              <a href="/login" className="button-pro">
                 Ingresar
               </a>
             </div>

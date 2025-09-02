@@ -6,7 +6,7 @@ import "./Contactanos.css";
 const Contactanos = () => {
   return (
     <div className="contactanos-section">
-        <h2 className="titulo">CONTÁCTANOS</h2>
+        <h1 className="titulo">CONTÁCTANOS</h1>
       <div className="contactanos-container">  
         <ContactInfo />
         <ContactForm />
