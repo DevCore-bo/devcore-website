@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* background: url('./assets/Frame25.png'); */
   background: url('https://img.freepik.com/vector-premium/diagrama-circuito-azul-tecnologia-sobre-fondo-blanco-sistema-conexion-placa-circuito-alta-tecnologia-tecnologia-abstracta-vectorial-sobre-fondo-blanco_387612-717.jpg') no-repeat center center;
   background-size: cover;
   color: #001B48;
@@ -73,9 +72,9 @@
   display: flex;
   flex-direction: column;
   padding: 30px;
-  border-radius: 8px;
+  border-radius: 16px;
   width: 32%;
-  height: 70vh;
+  height: 77vh;
   box-shadow: 0px 0px 18px 0px rgba(52, 47, 73, 0.7);
 }
 
@@ -92,10 +91,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 10%;
+  margin-left: 5%;
   font-size: 2vh;
   font-family: 'Raleway';
-  width: 80%;
+  width: 90%;
 }
 
 .auth-field label {
@@ -127,46 +126,51 @@
   width: 80%;
 }
 
-.boton {
-  height: 45px;
-  width: 200px;
-  border-radius: 12px;
-  border: 2px solid #001B48;
+.button-pro {
+  border-radius: 10px;
+  background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
+  border: none;
+  height: 50px;
+  width: 180px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins";
+  font-size: 17px;
+  color: #ffffff;
+  margin-top: 2%;
   text-decoration: none;
-  color: #001B48;
-  text-align: center;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  background-color: transparent;
-  font-weight: 600;
-  font-size: 15px;
-  font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease;
-  white-space: nowrap;
 }
 
-.boton:hover {
-  color: #00bfff;
-  background: transparent;
-  border: 2px solid #00bfff;
-  transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+
+.button-pro:hover {
+  background: linear-gradient(45deg, var(--navy-blue), var(--purple));
+  transform: scale(1.05);
+}
+
+.auth-hero-logo {
+  width: clamp(290px, 320vw, 540px);
+  height: auto;
+  margin-bottom: 1.5rem;
+  animation: fadeInLogo 1.2s ease-out both;
+  animation: float 6s ease-in-out 1.2s infinite;
 }
 
 .auth-hero-title {
-  font-size: clamp(2rem, 3.5vw, 2.2rem);
+  font-size: clamp(2rem, 3.vw, 2rem);
   font-weight: 700;
   line-height: 1.25;
   width: 100%;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+  margin: 2%;
   animation: fadeUpText 1s 0.2s ease-out both;
 }
 
 .auth-hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.7;
   max-width: 55ch;
   opacity: 0.95;
@@ -176,15 +180,10 @@
 @media (max-width: 480px) {
   .auth-content {
     height: 100vh;
-    background-color: crimson;
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .auth-left {
-    height: 25vh;
   }
 
   .auth-field {
@@ -193,7 +192,7 @@
     align-items: start;
     display: flex;
     justify-content: center;
-    margin-left: -1%;
+    margin-left: 5%;
   }
 
   .auth-container .auth-content .auth-card-login {
@@ -207,8 +206,9 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    width: 90%;
+    width: 80vh;
     height: auto;
+    margin-top: 4%;
     flex-direction: column;
   }
 
@@ -224,11 +224,11 @@
 
   .auth-field input {
     padding: 2%;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 0.8rem;
     font-family: 'Raleway';
     outline: none;
-    width: 100%;
+    width: 90%;
   }
 
   .auth-card-login h2 {
@@ -243,12 +243,12 @@
   }
 
   .auth-hero-logo {
-    width: clamp(290px, 320vw, 540px);
+    width: clamp(150px, 310vw, 280px);
     height: auto;
-    margin-bottom: 1.5rem;
+    margin-top: 20%;
     animation: fadeInLogo 1.2s ease-out both;
     animation: float 6s ease-in-out 1.2s infinite;
-}
+  }
 
   .auth-actions {
     gap: 3%;
@@ -273,15 +273,16 @@
     font-size: 0.75rem;
     margin-top: 2%;
   }
+
   .auth-card-register {
-     background: white;
+    background: white;
     justify-content: center;
     align-items: center;
     display: flex;
-    width: 100%;
-        height: auto;
+    width: 95%;
+    height: auto;
     flex-direction: column;
-}
+  }
 
   .auth-card-register h2 {
     text-align: center;
@@ -294,24 +295,26 @@
   }
 
   .auth-left {
-    height: 25vh;
-    background-color: aqua;
+    height: auto;
+    width: 100%;
+    margin-top: 15%;
     align-items: center;
     justify-content: center;
     display: flex;
   }
 
   .auth-hero-title {
-  font-size: clamp(2rem, 3.5vw, 2.2rem);
-  font-weight: 700;
-  line-height: 1.25;
-  width: 100%;
-  margin-top: 10%;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
-  animation: fadeUpText 1s 0.2s ease-out both;
-}
+    font-size: clamp(2rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: -5%;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+    animation: fadeUpText 1s 0.2s ease-out both;
+  }
 
 
 }
@@ -324,7 +327,7 @@
     gap: 2rem;
   }
 
-  .auth-card-login{
+  .auth-card-login {
     background: white;
     padding: 2%;
     border-radius: 16px;

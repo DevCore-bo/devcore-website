@@ -3,7 +3,7 @@ import { auth, db } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import "./Auth.css";
-import logo from "../../assets/LogoNavDevCore.png";
+import logoAzul from "../../assets/LogoAzul.png"
 import Swal from "sweetalert2";
 
 
@@ -48,7 +48,6 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    // Crear usuario en Firebase Auth
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       formData.email,
@@ -57,14 +56,12 @@ const handleSubmit = async (e) => {
 
     const user = userCredential.user;
 
-    // Guardar datos adicionales
     await setDoc(doc(db, "users", user.uid), {
       name: formData.name,
       email: formData.email,
       createdAt: new Date(),
     });
 
-    // Swal de éxito
     Swal.fire({
       title: "Usuario Registrado",
       text: "¡Registro exitoso!",
@@ -76,7 +73,6 @@ const handleSubmit = async (e) => {
       },
     });
 
-    // Limpiar formulario
     setFormData({ name: "", email: "", password: "", confirmPassword: "" });
 
   } catch (error) {
@@ -98,7 +94,7 @@ const handleSubmit = async (e) => {
     <div className="auth-container">
       <div className="auth-content">
         <div className="auth-left">
-          <img src={logo} alt="DevCore Logo" className="auth-hero-logo" />
+          <img src={logoAzul} alt="DevCore Logo" className="auth-hero-logo" />
           <h1 className="auth-hero-title">Crea tu camino en DevCore</h1>
           <p className="auth-hero-subtitle">
             Únete a DevCore y comienza a construir tu futuro como desarrollador.
@@ -144,10 +140,10 @@ const handleSubmit = async (e) => {
               />
             </div>
             <div className="auth-actions">
-              <button type="submit" className="boton">
+              <button type="submit" className="button-pro">
                 Registrarse
               </button>
-              <a href="/login" className="boton">
+              <a href="/login" className="button-pro">
                 Ingresar
               </a>
             </div>

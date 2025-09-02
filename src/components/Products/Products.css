@@ -79,16 +79,21 @@
 }
 
 .button-pro {
-    border-radius: 10px;
-    background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
-    border: none;
-    height: 50px;
-    width: 200px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: "Poppins";
-    font-size: 20px;
-    color: #ffffff;
+  border-radius: 10px;
+  background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
+  border: none;
+  height: 50px;
+  width: 180px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins";
+  font-size: 17px;
+  color: #ffffff;
+  margin-top: 2%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-pro:hover {

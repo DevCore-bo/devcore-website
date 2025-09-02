@@ -2,12 +2,10 @@
   display: flex;
   font-family: 'Poppins', sans-serif;
   justify-content: center;
-  width: 100%;
-  height: 100vh;
   margin: 0;
   flex-direction: column;
-    padding: 20px 0 0 0;
-
+  height: calc(100vh - 70px);
+  width: 100%;
 }
 
 .titulo {
@@ -16,6 +14,7 @@
   width: 100%;
   padding: 20px 0 0 0;
   color: #001B48;
+  margin-top: 5%;
 }
 
 .contactanos-container {
@@ -24,7 +23,7 @@
   align-items: center;
   gap: 15%;
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-bottom: 7%;
   margin-top: 1.5%;
   flex-direction: row;
@@ -116,20 +115,22 @@
   flex-direction: column;
 }
 
-.boton {
+.button-pro {
   border-radius: 10px;
+  background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
   border: none;
-  height: 45px;
-  width: 200px;
+  height: 50px;
+  width: 180px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Poppins";
-  font-size: 52%;
+  font-size: 17px;
   color: #ffffff;
+  margin-top: 2%;
 }
 
-.boton:hover {
-  background: linear-gradient(45deg, #001B48, #851BF7);
+.button-pro:hover {
+  background: linear-gradient(45deg, var(--navy-blue), var(--purple));
   transform: scale(1.05);
 }
 
@@ -142,9 +143,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  /* altura por defecto */
   padding-bottom: 60%;
-  /* aspecto responsivo */
   border: 2px solid #001B48;
   border-radius: 10px;
   overflow: hidden;
@@ -161,10 +160,9 @@
 
 @media (max-width: 768px) {
   .contactanos-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     height: 100vh;
-    gap: 2rem;
   }
 
   .contact-card {
@@ -179,16 +177,25 @@
 
   .titulo {
     font-size: 2.2rem;
-    /* Reducimos tamaño */
     text-align: center;
   }
 }
 
 @media (max-width: 480px) {
+  .contactanos-section {
+    margin: 0;
+    width: 100%;
+    height: 70%;
+  }
+
   .contactanos-container {
-    flex-direction: column;
-    height: 100vh;
-    gap: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 10%;
+    height: auto;
+    margin: 0%;
+    flex-direction: column-reverse;
   }
 
   .contact-card {
@@ -196,17 +203,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 78%;
-    height: 45vh;
-    gap: 1%;
+    width: 75%;
+    height: 47%;
+    gap: 2%;
     box-shadow: 0px 0px 18px 0px rgba(82, 78, 100, 0.7);
   }
 
   .titulo {
-    font-size: 80%;
-    text-align: center;
-    margin-top: -6%;
-    margin-bottom: 2%;
+    font-size: 2.0rem;
+    padding: 10px 0 10px 0;
+    margin: 0%;
   }
 
   .contact-form .boton {
@@ -234,28 +240,40 @@
 
   .map-container {
     position: relative;
-    margin-top: 10%;
-    width: 85%;
-    height: 30%;
-    /* altura por defecto */
+    margin-top: 5%;
+    width: 90%;
+    height: 100%;
     padding-bottom: 50%;
-    /* aspecto responsivo */
     border: 2px solid #001B48;
     border-radius: 10px;
     overflow: hidden;
   }
 
   .input-field textarea {
-  padding: 1%;
-  height: 4vh;
-}
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1%;
-  width: 90%;
-  height: 50vh;
-  align-items: start;
-}
+    padding: 1%;
+    height: 14vh;
+  }
+
+  .input-field input {
+    height: 3vh;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1%;
+    width: 90%;
+    height: auto;
+    gap: -1%;
+    align-items: start;
+    font-size: 1.6rem;
+  }
+
+  .button-pro {
+    height: 40px;
+    margin: 4%;
+    width: 150px;
+    font-size: 16px;
+  }
 
 }

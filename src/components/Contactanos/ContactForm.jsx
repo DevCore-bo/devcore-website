@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
 import "./Contactanos.css";
-import Swal from "sweetalert2"; // ✅ Importa SweetAlert2
+import Swal from "sweetalert2";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -65,7 +65,9 @@ const ContactForm = () => {
           value={formData.consulta}
           onChange={handleChange("consulta")}
         />
-        <button className="boton" type="submit">Enviar Consulta</button>
+        <button className="button-pro" type="submit">
+          Enviar Consulta
+        </button>
       </form>
     </div>
   );
