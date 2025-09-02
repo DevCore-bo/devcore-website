@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Auth.css";
 import "../Hero/Hero.css";
 import logoAzul from "../../assets/LogoAzul.png";
@@ -6,7 +6,7 @@ import { auth } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react"; // 👈 iconos ojo
+import { Eye, EyeOff } from "lucide-react"; 
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,18 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+ useEffect(() => {
+   
+    const timer = setTimeout(() => {
+     
+      document.documentElement.scrollTop = 0; // Para la mayoría de navegadores modernos
+      document.body.scrollTop = 0; // Para compatibilidad con otros navegadores/casos
+    }, 0);
 
+ 
+    return () => clearTimeout(timer);
+    
+  }, []); 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
