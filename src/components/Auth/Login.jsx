@@ -112,7 +112,7 @@ const Login = () => {
                 <button className="button-pro" type="submit">
                   Ingresar
                 </button>
-                                <a href="/register" className="button-pro">
+                <a href="/register" className="button-pro">
                   Registrate
                 </a>
               </div>

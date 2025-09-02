@@ -110,8 +110,6 @@ const Register = () => {
                   required
                 />
               </div>
-
-              {/* Contraseña */}
               <div className="auth-field password-field">
                 <label>Contraseña</label>
                 <div className="password-input">
@@ -130,8 +128,6 @@ const Register = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Confirmar contraseña */}
               <div className="auth-field password-field">
                 <label>Confirmar Contraseña</label>
                 <div className="password-input">
@@ -156,8 +152,6 @@ const Register = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Texto debajo */}
               <p className="auth-register-text">
                 ¿Ya tienes una cuenta?{" "}
                 <Link to="/login" className="register-link">
