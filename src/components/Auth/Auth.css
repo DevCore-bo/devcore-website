@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* background: url('./assets/Frame25.png'); */
   background: url('https://img.freepik.com/vector-premium/diagrama-circuito-azul-tecnologia-sobre-fondo-blanco-sistema-conexion-placa-circuito-alta-tecnologia-tecnologia-abstracta-vectorial-sobre-fondo-blanco_387612-717.jpg') no-repeat center center;
   background-size: cover;
   color: #001B48;
@@ -160,18 +159,18 @@
 }
 
 .auth-hero-title {
-  font-size: clamp(2rem, 3.5vw, 2.2rem);
+  font-size: clamp(2rem, 3.vw, 2rem);
   font-weight: 700;
   line-height: 1.25;
   width: 100%;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+  margin: 2%;
   animation: fadeUpText 1s 0.2s ease-out both;
 }
 
 .auth-hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.7;
   max-width: 55ch;
   opacity: 0.95;
