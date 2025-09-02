@@ -59,12 +59,29 @@ const Register = () => {
           confirmButton: "custom-confirm-button",
         },
       }).then(() => {
-        navigate("/login"); // 👈 Redirige a login después de aceptar
+        navigate("/login");
       });
     } catch (error) {
+      let mensaje = "Ocurrió un error inesperado. Intenta nuevamente.";
+
+      if (error.code === "auth/email-already-in-use") {
+        mensaje = "Este correo ya está registrado. Intenta con otro.";
+      } else if (error.code === "auth/invalid-email") {
+        mensaje = "El correo electrónico no es válido.";
+      } else if (error.code === "auth/operation-not-allowed") {
+        mensaje = "El registro con correo y contraseña está deshabilitado.";
+      } else if (error.code === "auth/weak-password") {
+        mensaje = "La contraseña debe tener al menos 6 caracteres.";
+      } else if (error.code === "auth/missing-email") {
+        mensaje = "Debes ingresar un correo electrónico.";
+      } else if (error.code === "auth/missing-password") {
+        mensaje = "Debes ingresar una contraseña.";
+      } else if (error.code === "auth/network-request-failed") {
+        mensaje = "Error de red. Verifica tu conexión a internet.";
+      }
       Swal.fire({
-        title: "Error en Registro",
-        text: error.message,
+        title: "Error al Registrarse",
+        text: mensaje,
         icon: "error",
         confirmButtonText: "Aceptar",
         customClass: {
