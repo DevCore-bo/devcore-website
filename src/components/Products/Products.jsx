@@ -20,11 +20,11 @@ const Products = () => {
                         <h2>Glow And Shine</h2>
                         <p>Sitio Web de cuidado personal que ofrece servicios  para mejorar la belleza y bienestar de los usuarios.</p>
                         <div className='cont-button-pro'>
-                            <Link to="/productos/glow-shine">
+                            <a to="/productos/glow-shine">
                                 <button className="button-pro">
                                     Ver Más
                                 </button>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -37,11 +37,11 @@ const Products = () => {
                         <h2>Glucook</h2>
                         <p>App para personas con diabetes que controla recetas y calcula valores nutricionales para una alimentación saludable.</p>
                         <div className='cont-button-pro'>
-                            <Link to="/productos/glucook">
+                            <a to="/productos/glucook">
                                 <button className="button-pro">
                                     Ver Más
                                 </button>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -54,11 +54,11 @@ const Products = () => {
                         <h2>Cuenta-Migo</h2>
                         <p>App moderno para la adiministración y gestión de gastos compartidos y/o individuales</p>
                         <div className='cont-button-pro'>
-                            <Link to="/productos/migo">
+                            <a to="/productos/migo">
                                 <button className="button-pro">
                                     Ver Más
                                 </button>
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>
