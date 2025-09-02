@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Auth.css";
 import "../Hero/Hero.css";
-import logo from "../../assets/LogoNavDevCore.png";
 import logoAzul from "../../assets/LogoAzul.png"
 import { auth } from "../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";

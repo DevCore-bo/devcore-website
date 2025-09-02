@@ -3,7 +3,6 @@ import { auth, db } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import "./Auth.css";
-import logo from "../../assets/LogoNavDevCore.png";
 import logoAzul from "../../assets/LogoAzul.png"
 import Swal from "sweetalert2";
 
