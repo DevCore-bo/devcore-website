@@ -12,6 +12,19 @@ const Login = () => {
   const [playKey, setPlayKey] = useState(0);
   const navigate = useNavigate();
 
+   useEffect(() => {
+     
+      const timer = setTimeout(() => {
+       
+        document.documentElement.scrollTop = 0; // Para la mayoría de navegadores modernos
+        document.body.scrollTop = 0; // Para compatibilidad con otros navegadores/casos
+      }, 0);
+  
+   
+      return () => clearTimeout(timer);
+      
+    }, []); 
+
   useEffect(() => {
     const handler = () => setPlayKey((k) => k + 1);
     window.addEventListener("replay-hero", handler);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
@@ -14,7 +14,18 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+ useEffect(() => {
+   
+    const timer = setTimeout(() => {
+     
+      document.documentElement.scrollTop = 0; 
+      document.body.scrollTop = 0; 
+    }, 0);
 
+ 
+    return () => clearTimeout(timer);
+    
+  }, []); 
   const handleChange = (field) => (e) => {
     setFormData({ ...formData, [field]: e.target.value });
   };
