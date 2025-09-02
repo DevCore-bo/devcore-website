@@ -1,99 +1,114 @@
+/* CONTENEDOR PRINCIPAL */
 .cont-product {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: calc(100vh - 70px);
+    align-items: center;
+    min-height: calc(100vh - 70px);
     width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* TITULO */
 .cont-title-pro {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-family: "Raleway";
-    font-size: 25px;
+    font-family: "Raleway", sans-serif;
+    font-size: 28px;
     color: var(--navy-blue);
-    padding: 20px 0 20px 0;
+    padding: 20px 0;
+    text-align: center;
 }
 
+/* CONTENEDOR DE TARJETAS */
 .cont-card-pro {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
+    flex-wrap: wrap; /* permite que las tarjetas bajen de fila */
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
     width: 100%;
-    gap: 10px;
 }
 
+/* TARJETAS */
 .cont-cardP {
     display: flex;
     flex-direction: column;
-    height: 420px;
-    width: 350px;
     background-color: #FFFFFF;
     border-radius: 20px;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
     padding: 10px;
+    flex: 1 1 300px; /* flexible según espacio disponible */
+    max-width: 350px;
+    min-height: 320px;
 }
 
 .cont-cardP:hover {
     transform: scale(1.05);
 }
 
+/* IMAGEN */
 .cont-ima-pro {
-    height: 40%;
-    padding: 0 50px 0 50px;
+    flex: 0 0 40%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cont-card-pro img {
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
+/* DESCRIPCIÓN */
 .cont-desc-pro {
-    height: 60%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    padding: 10px 0;
 }
 
 .cont-desc-pro h2 {
     color: var(--turquoise-light);
-    font-size: 28px;
-    font-family: "Raleway";
+    font-size: 24px;
+    font-family: "Raleway", sans-serif;
+    margin: 0;
 }
 
 .cont-desc-pro p {
     color: var(--navy-blue);
-    font-size: 16px;
-    font-family: "Poppins";
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
 }
 
+/* BOTÓN */
 .cont-button-pro {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 10px;
 }
 
-.button-pro {
-  border-radius: 10px;
-  background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
-  border: none;
-  height: 50px;
-  width: 180px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "Poppins";
-  font-size: 17px;
-  color: #ffffff;
-  margin-top: 2%;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.cont-button-pro .button-pro {
+    border-radius: 10px;
+    background: linear-gradient(45deg, var(--sky-blue), var(--turquoise-light));
+    border: none;
+    height: 50px;
+    width: 180px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    color: #ffffff;
 }
 
 .button-pro:hover {
@@ -101,34 +116,40 @@
     transform: scale(1.05);
 }
 
+/* MEDIA QUERIES */
+
+/* TABLETS GRANDES */
 @media (max-width: 1000px) {
-    .cont-ima-pro {
-        height: 40%;
-        padding: 0 20px 0 20px;
+    .cont-cardP {
+        flex: 1 1 45%;
+        min-height: 300px;
+    }
+
+    .cont-desc-pro h2 {
+        font-size: 20px;
+    }
+
+    .cont-desc-pro p {
+        font-size: 14px;
+    }
+
+    .button-pro {
+        width: 160px;
+        height: 45px;
+        font-size: 16px;
     }
 }
 
-@media (max-width: 800px) {
-    .cont-title-pro {
-        font-size: 18px;
-        padding: 10px 0 10px 0;
-    }
-
-    .cont-card-pro {
-        display: flex;
-        flex-direction: column;
-    }
-
+/* TABLETS / MÓVILES HORIZONTALES */
+@media (max-width: 768px) {
     .cont-cardP {
-        display: flex;
-        flex-direction: column;
-        height: 260px;
-        width: 250px;
+        flex: 1 1 60%;
+        min-height: 280px;
     }
 
-    .cont-ima-pro {
-        height: 40%;
-        padding: 0 20px 0 20px;
+    .cont-title-pro {
+        font-size: 22px;
+        padding: 10px 0;
     }
 
     .cont-desc-pro h2 {
@@ -136,12 +157,39 @@
     }
 
     .cont-desc-pro p {
+        font-size: 13px;
+    }
+
+    .button-pro {
+        width: 140px;
+        height: 40px;
+        font-size: 14px;
+    }
+}
+
+/* MÓVILES VERTICALES PEQUEÑOS */
+@media (max-width: 480px) {
+    .cont-cardP {
+        flex: 1 1 90%;
+        min-height: auto;
+    }
+
+    .cont-title-pro {
+        font-size: 18px;
+        padding: 10px 0;
+    }
+
+    .cont-desc-pro h2 {
+        font-size: 16px;
+    }
+
+    .cont-desc-pro p {
         font-size: 12px;
     }
 
     .button-pro {
-        height: 40px;
         width: 120px;
-        font-size: 14px;
+        height: 35px;
+        font-size: 12px;
     }
 }
