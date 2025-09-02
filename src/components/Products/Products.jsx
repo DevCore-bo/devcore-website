@@ -37,7 +37,7 @@ const Products = () => {
                         <h2>Glucook</h2>
                         <p>App para personas con diabetes que controla recetas y calcula valores nutricionales para una alimentación saludable.</p>
                         <div className='cont-button-pro'>
-                            <Link to="/productos/migo">
+                            <Link to="/productos/glucook">
                                 <button className="button-pro">
                                     Ver Más
                                 </button>
@@ -54,7 +54,7 @@ const Products = () => {
                         <h2>Cuenta-Migo</h2>
                         <p>App moderno para la adiministración y gestión de gastos compartidos y/o individuales</p>
                         <div className='cont-button-pro'>
-                            <Link to="/productos/glucook">
+                            <Link to="/productos/migo">
                                 <button className="button-pro">
                                     Ver Más
                                 </button>

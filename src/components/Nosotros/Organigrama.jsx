@@ -1,6 +1,7 @@
 // Organigrama.js
 
 import "./Organigrama.css";
+import React, {useEffect } from 'react';
 import nataliaImage from "../../assets/natalia.jpeg";
 import mikaelaImage from "../../assets/mikaela.jpeg"; 
 import fabricioImage from "../../assets/fabricio.jpeg";
@@ -17,6 +18,18 @@ function Organigrama() {
         { nombre: "Claudia Nina ", descripcion: "Desarrolladora", foto: claudiaImage },
         { nombre: "Aldahir Fernandez", descripcion: "Desarrollador", foto: aldahirImage },
     ];
+useEffect(() => {
+   
+    const timer = setTimeout(() => {
+     
+      document.documentElement.scrollTop = 0; // Para la mayoría de navegadores modernos
+      document.body.scrollTop = 0; // Para compatibilidad con otros navegadores/casos
+    }, 0);
+
+ 
+    return () => clearTimeout(timer);
+    
+  }, []); 
 
     return (
         <div className="organigrama">

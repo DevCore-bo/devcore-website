@@ -165,7 +165,7 @@ export const productsData = [
   },
   {
     id: "migo",
-    name: "Cuenta conmigo",
+    name: "Cuenta Conmigo",
     description:
       "La aplicación definitiva para gestionar gastos compartidos e individuales. Sincroniza tus finanzas, liquida deudas y toma el control de tu dinero.",
     logoSrc: "/logos/banner_migo.png",

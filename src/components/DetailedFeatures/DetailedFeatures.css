@@ -1,15 +1,141 @@
-/* --- Contenedor Principal con Fondo Mejorado --- */
+/* DetailedFeatures.css */
+
+/* --- Contenedor Principal con Fondo y Partículas --- */
 .detailed-features-section {
- position: relative;
+    position: relative;
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Clave para contener las partículas */
+    flex-direction: column;
+}
+
+.features{
+   position: relative;
+    /* Mantenemos tu fondo original claro */
     background: radial-gradient(ellipse at top, #f0f4f8 0%, #ffffff 100%);
     color: var(--color-text-dark);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: hidden; /* Clave para contener las partículas */
     flex-direction: column;
 }
+
+/* --- INICIO: CÓDIGO DE PARTÍCULAS PEGADO --- */
+
+#stars, #stars2, #stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0; /* Coloca las partículas detrás del contenido */
+}
+
+#stars {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    188px 1819px #87CEFA, 1528px 1195px #87CEFA, 1195px 1017px #87CEFA, 1732px 1475px #87CEFA,
+    249px 1535px #87CEFA, 1283px 1222px #87CEFA, 1918px 1083px #87CEFA, 32px 1173px #87CEFA,
+    1210px 185px #87CEFA, 583px 872px #87CEFA, 1429px 1982px #87CEFA, 1032px 556px #87CEFA,
+    1888px 112px #87CEFA, 745px 1639px #87CEFA, 1601px 744px #87CEFA, 304px 34px #87CEFA,
+    1999px 1357px #87CEFA, 801px 934px #87CEFA, 45px 1987px #87CEFA, 932px 121px #87CEFA,
+    1345px 654px #87CEFA, 1789px 1234px #87CEFA, 621px 432px #87CEFA, 1500px 1800px #87CEFA,
+    10px 1450px #87CEFA, 1950px 200px #87CEFA, 876px 1543px #87CEFA, 333px 999px #87CEFA,
+    1654px 321px #87CEFA, 543px 1789px #87CEFA, 1212px 1313px #87CEFA, 187px 834px #87CEFA;
+  animation: animStar 30s linear infinite;
+}
+#stars:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    188px 1819px #87CEFA, 1528px 1195px #87CEFA, 1195px 1017px #87CEFA, 1732px 1475px #87CEFA,
+    249px 1535px #87CEFA, 1283px 1222px #87CEFA, 1918px 1083px #87CEFA, 32px 1173px #87CEFA,
+    1210px 185px #87CEFA, 583px 872px #87CEFA, 1429px 1982px #87CEFA, 1032px 556px #87CEFA,
+    1888px 112px #87CEFA, 745px 1639px #87CEFA, 1601px 744px #87CEFA, 304px 34px #87CEFA,
+    1999px 1357px #87CEFA, 801px 934px #87CEFA, 45px 1987px #87CEFA, 932px 121px #87CEFA,
+    1345px 654px #87CEFA, 1789px 1234px #87CEFA, 621px 432px #87CEFA, 1500px 1800px #87CEFA,
+    10px 1450px #87CEFA, 1950px 200px #87CEFA, 876px 1543px #87CEFA, 333px 999px #87CEFA,
+    1654px 321px #87CEFA, 543px 1789px #87CEFA, 1212px 1313px #87CEFA, 187px 834px #87CEFA;
+}
+
+#stars2 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 
+    419px 1603px #1E90FF, 1944px 197px #1E90FF, 1243px 1435px #1E90FF, 182px 1220px #1E90FF,
+    1686px 1481px #1E90FF, 482px 340px #1E90FF, 1091px 1983px #1E90FF, 1333px 888px #1E90FF,
+    670px 1100px #1E90FF, 22px 540px #1E90FF, 918px 222px #1E90FF, 1573px 1777px #1E90FF,
+    1111px 1212px #1E90FF, 843px 18px #1E90FF, 1445px 654px #1E90FF, 72px 845px #1E90FF,
+    1701px 1984px #1E90FF, 555px 666px #1E90FF, 1298px 324px #1E90FF, 999px 1444px #1E90FF,
+    201px 101px #1E90FF, 1823px 1600px #1E90FF, 357px 1357px #1E90FF, 1432px 987px #1E90FF;
+  animation: animStar 60s linear infinite;
+}
+#stars2:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+    box-shadow: 
+    419px 1603px #1E90FF, 1944px 197px #1E90FF, 1243px 1435px #1E90FF, 182px 1220px #1E90FF,
+    1686px 1481px #1E90FF, 482px 340px #1E90FF, 1091px 1983px #1E90FF, 1333px 888px #1E90FF,
+    670px 1100px #1E90FF, 22px 540px #1E90FF, 918px 222px #1E90FF, 1573px 1777px #1E90FF,
+    1111px 1212px #1E90FF, 843px 18px #1E90FF, 1445px 654px #1E90FF, 72px 845px #1E90FF,
+    1701px 1984px #1E90FF, 555px 666px #1E90FF, 1298px 324px #1E90FF, 999px 1444px #1E90FF,
+    201px 101px #1E90FF, 1823px 1600px #1E90FF, 357px 1357px #1E90FF, 1432px 987px #1E90FF;
+}
+#stars3 {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  box-shadow: 
+    936px 166px #4169E1, 882px 1461px #4169E1, 356px 632px #4169E1, 1001px 815px #4169E1,
+    1724px 259px #4169E1, 1363px 1303px #4169E1, 123px 999px #4169E1, 1876px 543px #4169E1,
+    666px 1666px #4169E1, 1500px 1500px #4169E1, 444px 1122px #4169E1, 1980px 890px #4169E1,
+    1621px 1823px #4169E1, 289px 128px #4169E1, 1145px 1045px #4169E1, 1901px 1902px #4169E1,
+    813px 402px #4169E1, 1399px 23px #4169E1, 101px 502px #4169E1, 1776px 1234px #4169E1;
+  animation: animStar 90s linear infinite;
+}
+#stars3:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  box-shadow: 
+    936px 166px #4169E1, 882px 1461px #4169E1, 356px 632px #4169E1, 1001px 815px #4169E1,
+    1724px 259px #4169E1, 1363px 1303px #4169E1, 123px 999px #4169E1, 1876px 543px #4169E1,
+    666px 1666px #4169E1, 1500px 1500px #4169E1, 444px 1122px #4169E1, 1980px 890px #4169E1,
+    1621px 1823px #4169E1, 289px 128px #4169E1, 1145px 1045px #4169E1, 1901px 1902px #4169E1,
+    813px 402px #4169E1, 1399px 23px #4169E1, 101px 502px #4169E1, 1776px 1234px #4169E1;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+/* --- FIN: CÓDIGO DE PARTÍCULAS PEGADO --- */
 
 
 /* --- Cabecera de Sección con Animaciones de Entrada --- */
@@ -19,10 +145,10 @@
   padding: 0 20px;
   line-height: 65px;
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Asegura que el header esté sobre las partículas */
 }
 
-/* CAMBIO: Estilos iniciales del texto (oculto) */
+
 .section-title,
 .section-subtitle {
   opacity: 0;
@@ -30,14 +156,12 @@
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* CAMBIO: Estilos del texto cuando el contenedor es visible */
 .section-header.is-visible .section-title,
 .section-header.is-visible .section-subtitle {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* CAMBIO: Retraso en la animación del subtítulo */
 .section-header.is-visible .section-subtitle {
   transition-delay: 0.2s;
 }
@@ -51,12 +175,12 @@
   letter-spacing: 1px;
 }
 
-
 .features-carousel-container {
   max-width: 100%;
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Asegura que el carrusel esté sobre las partículas */
 }
+
 
 .swiper { padding: 5px 0 60px 0 !important; overflow: hidden !important; width: 100%; }
 .swiper-wrapper { display: flex; align-items: center; transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; }

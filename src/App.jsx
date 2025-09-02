@@ -1,53 +1,69 @@
 // src/App.jsx
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate, BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Tus imports de componentes
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import Footer from "./components/Footer/Footer";
-import ScrollTop from "./components/utils/ScrollTop";
 import ProductDetailsPage from "./pages/ProductDetails";
 import Home from "./pages/Home";
-// Aldahir
 import Tecnology from "./components/Tecnology/Tecnology";
 import Products from "./components/Products/Products";
-
-// Claudia
 import Nosotros from "./components/Nosotros/Nosotros";
 import Organigrama from "./components/Nosotros/Organigrama";
-
-// Mikaela
 import Contactanos from "./components/Contactanos/Contactanos";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 
-// Natalia
-// (Aquí irán los imports cuando estén listos)
-
 import "./App.css";
 
-// Componente para los botones de productos (como en el primer código)
-const ProductosBotones = () => {
+// --- PASO 1: CREA ESTE COMPONENTE CONTROLADOR ---
+// Este componente no renderiza nada visible. Solo contiene la lógica.
+const ScrollHandler = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    // La lógica de scroll se ejecuta solo si estamos en la ruta principal ('/')
+    if (location.pathname === '/') {
+      const sectionId = location.state?.scrollToSection;
+      if (sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const timer = setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            navigate(location.pathname, { replace: true, state: {} });
+          }, 100);
+          return () => clearTimeout(timer);
+        }
+      }
+    }
+  }, [location, navigate]);
 
-  return (
-    <div style={{ textAlign: "center", marginTop: "1rem" }}></div>
-  );
+  return null; // No renderiza nada
 };
 
+// --- PASO 2: MODIFICA TU COMPONENTE APP ---
 function App() {
   return (
     <Router>
-      <ScrollTop />
       <Navbar />
+      
+      {/* Añade el ScrollHandler aquí. Escuchará los cambios de ruta globalmente. */}
+      <ScrollHandler /> 
+
       <main>
         <Routes>
-          {/* Página principal */}
+          {/* Tu estructura de rutas se mantiene EXACTAMENTE IGUAL */}
           <Route
             path="/"
             element={
               <>
-                <Hero />
+              
+                  <Hero />
+            
 
                 <section id="nosotros">
                   <Nosotros />
@@ -59,10 +75,9 @@ function App() {
 
                 <section id="productos">
                   <Products />
-                  <ProductosBotones /> {/* Botones con links a detalles */}
                 </section>
 
-                <section id="contactanos" className="sec2">
+                <section id="contactanos">
                   <Contactanos />
                 </section>
               </>

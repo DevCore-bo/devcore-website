@@ -15,19 +15,20 @@ import { useInView } from 'react-intersection-observer';
 import './DetailedFeatures.css';
 
 const DetailedFeatures = ({ features }) => {
-  // CAMBIO: Mover el Hook al principio del componente.
-  // Ahora se llama incondicionalmente en cada render, lo cual es correcto.
   const { ref: headerRef, inView: headerIsVisible } = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
-  // La comprobación y el return temprano se realizan DESPUÉS de llamar a todos los hooks.
   if (!features || features.length === 0) {
     return null;
   }
 
   return (
+    <div className="features">
+         <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
     <section className="detailed-features-section">
       <div 
         ref={headerRef} 
@@ -69,6 +70,7 @@ const DetailedFeatures = ({ features }) => {
         </Swiper>
       </div>
     </section>
+    </div>
   );
 };
 

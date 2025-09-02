@@ -1,4 +1,7 @@
-import React from "react";
+// src/components/Footer/Footer.jsx
+
+// 1. Importa los hooks necesarios de react-router-dom
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Footer.css";
 
 const IconBtn = ({ href = "#", label, children }) => (
@@ -14,13 +17,32 @@ const IconBtn = ({ href = "#", label, children }) => (
 );
 
 export default function Footer() {
+  // 2. Inicializa los hooks para obtener la ubicación y la función de navegación
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  // 3. Crea la misma función de manejo de clics que tienes en el Navbar
+const handleLinkClick = (e, sectionId) => {
+  e.preventDefault();
+
+  if (isHomePage) {
+    // Si ya estamos en la home, el scroll es local y centrado
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else {
+    // Si estamos fuera, navegamos a la home y pasamos el estado
+    navigate('/', { state: { scrollToSection: sectionId } });
+  }
+};
+
   return (
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-col">
           <h4 className="footer-title">Síguenos</h4>
           <div className="social-row">
-            <IconBtn label="Twitter - @DevCore-Bo" href="https://x.com/i/flow/login?lang=es#">
+            {/* ... tus IconBtn se mantienen igual ... */}
+             <IconBtn label="Twitter - @DevCore-Bo" href="https://x.com/i/flow/login?lang=es#">
               <svg viewBox="0 0 24 24" className="svg">
                 <path d="M22 5.92a8.18 8.18 0 0 1-2.36.65 4.12 4.12 0 0 0 1.8-2.27 8.22 8.22 0 0 1-2.6 1 4.11 4.11 0 0 0-7 3.75A11.65 11.65 0 0 1 3.15 4.6a4.11 4.11 0 0 0 1.27 5.49 4.08 4.08 0 0 1-1.86-.51v.05a4.11 4.11 0 0 0 3.29 4 4.12 4.12 0 0 1-1.85.07 4.11 4.11 0 0 0 3.84 2.85A8.25 8.25 0 0 1 2 19.54a11.64 11.64 0 0 0 6.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.36-.01-.54A8.34 8.34 0 0 0 22 5.92Z" />
               </svg>
@@ -40,60 +62,67 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4 className="footer-title">Productos</h4>
-          <ul className="product-list">
-            <li>
-              <a className="product-link" href="#inicio">
-                <span className="product-badge" aria-hidden>
-                  <svg viewBox="0 0 24 24" className="svg">
-                    <path d="M7 2h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm0 6h10V5a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v3Zm2 5h2v2H9v-2Zm0 3.5h2V19H9v-2.5Zm4-3.5h2v2h-2v-2Zm0 3.5h2V19h-2v-2.5Z" />
-                  </svg>
-                </span>
-                <span>Inicio</span>
-              </a>
-            </li>
-            <li>
-              <a className="product-link" href="#nosotros">
-                <span className="product-badge" aria-hidden>
-                  <svg viewBox="0 0 24 24" className="svg">
-                    <path d="M7 2h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm0 6h10V5a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v3Zm2 5h2v2H9v-2Zm0 3.5h2V19H9v-2.5Zm4-3.5h2v2h-2v-2Zm0 3.5h2V19h-2v-2.5Z" />
-                  </svg>
-                </span>
-                <span>Nosotros</span>
-              </a>
-            </li>
-            <li>
-              <a className="product-link" href="#tecnologias">
-                <span className="product-badge" aria-hidden>
-                  <svg viewBox="0 0 24 24" className="svg">
-                    <path d="M3 10h2v4H3v-4Zm3-2h2v8H6V8Zm4 3h2v2h-2v-2Zm3-3h2v8h-2V8Zm4 2h2v4h-2v-4Z" />
-                  </svg>
-                </span>
-                <span>Tecnologias</span>
-              </a>
-            </li>
-            <li>
-              <a className="product-link" href="#productos">
-                <span className="product-badge" aria-hidden>
-                  <svg viewBox="0 0 24 24" className="svg">
-                    <path d="M12 2s5 6 5 9.5A5 5 0 0 1 7 11.5C7 8 12 2 12 2Zm0 20a7.5 7.5 0 0 0 7.5-7.5c0-2.9-2.2-6.3-4-8.5-.7-.9-2.3-.9-3 0-1.8 2.2-4 5.6-4 8.5A7.5 7.5 0 0 0 12 22Z" />
-                  </svg>
-                </span>
-                <span>Nuestros Productos</span>
-              </a>
-            </li>
-            <li>
-              <a className="product-link" href="#contactanos">
-                <span className="product-badge" aria-hidden>
-                  <svg viewBox="0 0 24 24" className="svg">
-                    <path d="M20.8 3.2S8 4 4.7 7.3c-3.4 3.4-2.7 8.9 1.5 11.3 3.6 2 8.3 1.2 11-1.5C20.5 14.8 21 9 20.8 3.2Zm-6.4 4.6c-1.5 4.1-4.5 7.1-8.6 8.6" />
-                  </svg>
-                </span>
-                <span>Contáctanos</span>
-              </a>
-            </li>
-          </ul>
+          
+<ul className="product-list">
+  <li>
+    <a className="product-link" href="#inicio" onClick={(e) => handleLinkClick(e, 'inicio')}>
+      <span className="product-badge" aria-hidden>
+        {/* Icono de Casa (Inicio) */}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="svg">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" />
+        </svg>
+      </span>
+      <span>Inicio</span>
+    </a>
+  </li>
+  <li>
+    <a className="product-link" href="#nosotros" onClick={(e) => handleLinkClick(e, 'nosotros')}>
+      <span className="product-badge" aria-hidden>
+        {/* Icono de Grupo (Nosotros) */}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="svg">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962c.566-.649.96-1.48.96-2.422 0-1.29-.538-2.433-1.39-3.239m-10.132-3.239c-1.145 1.045-1.755 2.553-1.755 4.239 0 .942.394 1.773.96 2.422m0 0a2.998 2.998 0 002.422 1.458m-2.422-1.458a2.998 2.998 0 01-1.458-2.422m16.208 2.422a2.998 2.998 0 01-1.458 2.422m1.458-2.422a2.998 2.998 0 002.422-1.458M12 21a9 9 0 100-18 9 9 0 000 18z" />
+        </svg>
+      </span>
+      <span>Nosotros</span>
+    </a>
+  </li>
+  <li>
+    <a className="product-link" href="#tecnologias" onClick={(e) => handleLinkClick(e, 'tecnologias')}>
+      <span className="product-badge" aria-hidden>
+        {/* Icono de Chip (Tecnologías) */}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="svg">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-2.25-2.25H7.5A2.25 2.25 0 005.25 7.5v9.75a2.25 2.25 0 002.25 2.25z" />
+        </svg>
+      </span>
+      <span>Tecnologías</span>
+    </a>
+  </li>
+  <li>
+    <a className="product-link" href="#productos" onClick={(e) => handleLinkClick(e, 'productos')}>
+      <span className="product-badge" aria-hidden>
+        {/* Icono de Grid (Productos) */}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="svg">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+        </svg>
+      </span>
+      <span>Nuestros Productos</span>
+    </a>
+  </li>
+  <li>
+    <a className="product-link" href="#contactanos" onClick={(e) => handleLinkClick(e, 'contactanos')}>
+      <span className="product-badge" aria-hidden>
+        {/* Icono de Email (Contáctanos) */}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="svg">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+      </span>
+      <span>Contáctanos</span>
+    </a>
+  </li>
+</ul>
         </div>
         <div className="footer-col">
+          {/* ... tu columna de Horarios se mantiene igual ... */}
           <h4 className="footer-title">Horarios de atención</h4>
           <ul className="hours">
             <li>

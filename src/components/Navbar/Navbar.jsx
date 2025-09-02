@@ -13,19 +13,21 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  const handleNavClick = (e, sectionId) => {
-    e.preventDefault();
+ const handleNavClick = (e, sectionId) => {
+  e.preventDefault();
 
-    if (sectionId === 'inicio') {
-      window.dispatchEvent(new Event("replay-hero"));
-    }
+  if (sectionId === 'inicio') {
+    window.dispatchEvent(new Event("replay-hero"));
+  }
 
-    if (isHomePage) {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate(`/#${sectionId}`);
-    }
-  };
+  if (isHomePage) {
+    // Si ya estamos en la home, el scroll es local y centrado
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else {
+    // Si estamos fuera, navegamos a la home y pasamos el estado
+    navigate('/', { state: { scrollToSection: sectionId } });
+  }
+};
 
   useEffect(() => {
     const updateIndicator = () => {
