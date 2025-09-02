@@ -5,7 +5,10 @@
     height: calc(100vh - 70px);
     width: 100%;
 }
-
+.cont-button-pro a{
+     text-decoration: none;
+ 
+}
 .cont-title-pro {
     display: flex;
     justify-content: center;
