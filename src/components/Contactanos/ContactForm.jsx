@@ -17,8 +17,6 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Aquí reemplazamos el alert por SweetAlert2
     Swal.fire({
       title: "¡Consulta enviada!",
       text: `Gracias ${formData.nombre}, nos pondremos en contacto contigo pronto.`,
@@ -30,7 +28,6 @@ const ContactForm = () => {
       },
     });
 
-    // Limpiamos el formulario
     setFormData({
       nombre: "",
       correo: "",
@@ -65,7 +62,7 @@ const ContactForm = () => {
           value={formData.consulta}
           onChange={handleChange("consulta")}
         />
-        <button className="button-pro" type="submit">
+        <button className="button" type="submit">
           Enviar Consulta
         </button>
       </form>

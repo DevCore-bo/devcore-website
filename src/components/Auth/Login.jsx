@@ -1,29 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./Auth.css";
 import "../Hero/Hero.css";
-import logoAzul from "../../assets/LogoAzul.png"
+import logoAzul from "../../assets/LogoAzul.png";
 import { auth } from "../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react"; // 👈 Ojito (instala con: npm install lucide-react)
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [playKey, setPlayKey] = useState(0);
+  const [showPassword, setShowPassword] = useState(false); // 👈 estado para mostrar contraseña
   const navigate = useNavigate();
-
-   useEffect(() => {
-     
-      const timer = setTimeout(() => {
-       
-        document.documentElement.scrollTop = 0; // Para la mayoría de navegadores modernos
-        document.body.scrollTop = 0; // Para compatibilidad con otros navegadores/casos
-      }, 0);
-  
-   
-      return () => clearTimeout(timer);
-      
-    }, []); 
 
   useEffect(() => {
     const handler = () => setPlayKey((k) => k + 1);
@@ -54,7 +43,6 @@ const Login = () => {
       }).then(() => {
         navigate("/home");
       });
-
     } catch (error) {
       Swal.fire({
         title: "Error de Login",
@@ -79,37 +67,54 @@ const Login = () => {
             Bienvenido de nuevo a DevCore. Ingresa y retoma tu viaje en un espacio diseñado para potenciar tus proyectos, compartir experiencias y seguir impulsando la innovación junto a nuestra comunidad de desarrolladores.
           </p>
         </div>
+        <div className="contenedor-card">
+          <div className="auth-card-login">
+            <h2>Iniciar Sesión</h2>
+            <form onSubmit={handleSubmit} className="form">
+              <div className="auth-field">
+                <label>Correo Electrónico</label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange("email")}
+                  required
+                />
+              </div>
 
-        <div className="auth-card-login">
-          <h2>Iniciar Sesión</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="auth-field">
-              <label>Correo Electrónico</label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={handleChange("email")}
-                required
-              />
-            </div>
-            <div className="auth-field">
-              <label>Contraseña</label>
-              <input
-                type="password"
-                value={formData.password}
-                onChange={handleChange("password")}
-                required
-              />
-            </div>
-            <div className="auth-actions">
-              <button className="button-pro" type="submit">
-                Ingresar
-              </button>
-              <a href="/register" className="button-pro">
-                Registrarse
-              </a>
-            </div>
-          </form>
+              <div className="auth-field password-field">
+                <label>Contraseña</label>
+                <div className="password-input">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={formData.password}
+                    onChange={handleChange("password")}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="toggle-password"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+
+              <p className="auth-register-text">
+                ¿No tienes una cuenta?{" "}
+                <a href="/register" className="register-link">
+                  Registrate
+                </a>
+              </p>
+
+              <div className="auth-actions">
+                <button className="button-pro-auth" type="submit">
+                  Ingresar
+                </button>
+              
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

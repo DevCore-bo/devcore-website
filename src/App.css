@@ -37,6 +37,8 @@ section h1 {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  min-height: fit-content;
+  
 }
 
 #productos {

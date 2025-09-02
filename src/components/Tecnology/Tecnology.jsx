@@ -1,4 +1,3 @@
-import React, { useEffect, useState, useRef } from "react";
 import "./Tecnology.css";
 import android from "../../assets/android.png";
 import angular from "../../assets/angular.png";
@@ -11,7 +10,6 @@ import owasp from "../../assets/owasp.png";
 import sharep from "../../assets/sharep.png";
 import sonarq from "../../assets/sonarq.png";
 import oracleser from "../../assets/oracleser.png";
-import oracleent from "../../assets/oracleent.png";
 
 const Tecnology = () => {
 
@@ -32,7 +30,6 @@ const Tecnology = () => {
         <div className="img_tec"><img src={sharep} alt="" /></div>
         <div className="img_tec"><img src={sonarq} alt="" /></div>
         <div className="img_tec"><img src={oracleser} alt="" /></div>
-        <div className="img_tec"><img src={oracleent} alt="" /></div>
       </div>
     </div>
 
