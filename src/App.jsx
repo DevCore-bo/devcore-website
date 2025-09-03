@@ -28,18 +28,26 @@ const ScrollHandler = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // La lógica de scroll se ejecuta solo si estamos en la ruta principal ('/')
-    if (location.pathname === '/') {
-      const sectionId = location.state?.scrollToSection;
-      if (sectionId) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const timer = setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Solo actuamos si venimos con estado para hacer scroll
+    const sectionId = location.state?.scrollToSection;
+    if (sectionId) {
+      // Buscamos el elemento
+      const element = document.getElementById(sectionId);
+
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navigate(location.pathname, { replace: true, state: {} });
+      } else {
+        const timer = setTimeout(() => {
+          const elementAfterDelay = document.getElementById(sectionId);
+          if (elementAfterDelay) {
+            elementAfterDelay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Limpiamos el estado
             navigate(location.pathname, { replace: true, state: {} });
-          }, 100);
-          return () => clearTimeout(timer);
-        }
+          }
+        }, 300); // Aumentamos el tiempo de espera
+
+        return () => clearTimeout(timer); // Limpieza del temporizador
       }
     }
   }, [location, navigate]);
@@ -49,61 +57,57 @@ const ScrollHandler = () => {
 
 function App() {
   return (
-      <AuthProvider>
-    <Router>
-      
-      <ScrollHandler /> 
+    <AuthProvider>
+      <Router>
 
-      <main>
-        <Routes>
-      <Route element={<MainLayout />}>
-          <Route
-            path="/"
-            element={
-              <>
-              
-                  <Hero />
-            
+        <ScrollHandler />
 
-                <section id="nosotros">
-                  <Nosotros />
-                </section>
+        <main>
+          <Routes>
+            <Route element={<MainLayout />}>
+              <Route
+                path="/"
+                element={
+                  <>
 
-                <section id="tecnologias">
-                  <Tecnology />
-                </section>
+                    <Hero />
 
-                <section id="productos">
-                  <Products />
-                </section>
 
-                <section id="contactanos">
-                  <Contactanos />
-                </section>
-              </>
-            }
-          />
+                    <section id="nosotros">
+                      <Nosotros />
+                    </section>
 
-          {/* Detalles de productos */}
-          <Route path="/productos/:productId" element={<ProductDetailsPage />} />
+                    <section id="tecnologias">
+                      <Tecnology />
+                    </section>
 
-          {/* Otras páginas */}
-          <Route path="/organigrama" element={<Organigrama />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          </Route>
-      <Route 
-    path="/home" 
-    element={
-      <ProtectedRoute> 
-        <Home />
-      </ProtectedRoute>
-    } 
-  />
-          <Route path="*" element={<h1>404: Página no encontrada</h1>} />
-        </Routes>
-      </main>
-    </Router>
+                    <section id="productos">
+                      <Products />
+                    </section>
+
+                    <section id="contactanos">
+                      <Contactanos />
+                    </section>
+                  </>
+                }
+              />
+              <Route path="/productos/:productId" element={<ProductDetailsPage />} />
+              <Route path="/organigrama" element={<Organigrama />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<h1>404: Página no encontrada</h1>} />
+          </Routes>
+        </main>
+      </Router>
     </AuthProvider>
   );
 }
