@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logoCompleto from "../../assets/LogoNavDevCore.png";
-import logoSolo from "../../assets/devcoresolologo.png";
+import logoSolo from "../../assets/DevCoreLog.png";
 import { FiMoreVertical } from "react-icons/fi";
 const useWindowSize = () => {
   const [size, setSize] = useState({ width: window.innerWidth });

@@ -40,25 +40,29 @@ const handleLinkClick = (e, sectionId) => {
       <div className="footer-inner">
         <div className="footer-col">
           <h4 className="footer-title">Síguenos</h4>
-          <div className="social-row">
-            {/* ... tus IconBtn se mantienen igual ... */}
-             <IconBtn label="Twitter - @DevCore-Bo" href="https://x.com/i/flow/login?lang=es#">
-              <svg viewBox="0 0 24 24" className="svg">
-                <path d="M22 5.92a8.18 8.18 0 0 1-2.36.65 4.12 4.12 0 0 0 1.8-2.27 8.22 8.22 0 0 1-2.6 1 4.11 4.11 0 0 0-7 3.75A11.65 11.65 0 0 1 3.15 4.6a4.11 4.11 0 0 0 1.27 5.49 4.08 4.08 0 0 1-1.86-.51v.05a4.11 4.11 0 0 0 3.29 4 4.12 4.12 0 0 1-1.85.07 4.11 4.11 0 0 0 3.84 2.85A8.25 8.25 0 0 1 2 19.54a11.64 11.64 0 0 0 6.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.36-.01-.54A8.34 8.34 0 0 0 22 5.92Z" />
-              </svg>
-            </IconBtn>
-            <IconBtn label="Facebook - @DevCore-Bo" href="https://www.facebook.com/login/">
-              <svg viewBox="0 0 24 24" className="svg">
-                <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H7.9V12.1h2.54V9.88c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.19 2.24.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.77l-.44 2.87h-2.33V22c4.78-.75 8.44-4.92 8.44-9.94Z" />
-              </svg>
-            </IconBtn>
-            <IconBtn label="LinkedIn - @DevCore-Bo" href="https://www.linkedin.com/company/DevCore-Bo" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" className="svg" fill="currentColor">
-                <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 19h-3v-9h3v9zm-1.5-10.25c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.25 10.25h-3v-4.5c0-1.08-.02-2.48-1.51-2.48-1.51 0-1.74 1.18-1.74 2.4v4.58h-3v-9h2.88v1.23h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.58v4.73z" />
-              </svg>
-            </IconBtn>
-          </div>
-          <div className="handle">@DevCore-Bo</div>
+         <div className="social-row">
+  {/* CAMBIO: Icono de 'X' (antes Twitter) */}
+  <IconBtn label="X - @DevCore-Bolivia" href="https://x.com/DevCore_Bolivia">
+    <svg viewBox="0 0 24 24" className="svg">
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+    </svg>
+  </IconBtn>
+
+  {/* Icono de Facebook (sin cambios) */}
+  <IconBtn label="Facebook - @DevCore-Bolivia" href="https://www.facebook.com/profile.php?id=61580006291939">
+    <svg viewBox="0 0 24 24" className="svg">
+      <path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H7.9V12.1h2.54V9.88c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.19 2.24.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.77l-.44 2.87h-2.33V22c4.78-.75 8.44-4.92 8.44-9.94Z" />
+    </svg>
+  </IconBtn>
+
+  {/* CAMBIO: Icono de Instagram (antes LinkedIn) */}
+  <IconBtn label="Instagram - @DevCore-Bolivia" href="https://www.instagram.com/devcore_bolivia/" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" className="svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.069-4.85.069s-3.584-.011-4.85-.069c-3.225-.149-4.771-1.664-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0 1.157c-3.111 0-3.48.012-4.69.068-2.93.136-4.225 1.44-4.36 4.36C2.902 8.784 2.89 9.153 2.89 12s.012 3.216.068 4.69c.136 2.92 1.43 4.225 4.36 4.36 1.21.056 1.579.068 4.69.068s3.48-.012 4.69-.068c2.92-.136 4.225-1.43 4.36-4.36.056-1.21.068-1.579.068-4.69s-.012-3.48-.068-4.69c-.136-2.92-1.43-4.225-4.36-4.36C15.48 3.332 15.111 3.32 12 3.32zM12 7.02c-2.75 0-4.98 2.23-4.98 4.98s2.23 4.98 4.98 4.98 4.98-2.23 4.98-4.98-2.23-4.98-4.98-4.98zm0 8.13c-1.74 0-3.15-1.41-3.15-3.15s1.41-3.15 3.15-3.15 3.15 1.41 3.15 3.15-1.41 3.15-3.15 3.15zm5.23-8.21c-.78 0-1.41.63-1.41 1.41s.63 1.41 1.41 1.41 1.41-.63 1.41-1.41-.63-1.41-1.41-1.41z"/>
+    </svg>
+  </IconBtn>
+</div>
+          <div className="handle">@DevCore-Bolivia</div>
         </div>
         <div className="footer-col">
           <h4 className="footer-title">Productos</h4>
