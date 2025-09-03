@@ -7,7 +7,7 @@ import { AuthProvider } from './context/AuthProvider';
 import MainLayout from './layouts/MainLayout';
 
 
-// Tus imports de componentes
+// Tus imports de componentes wadwadaww
 import Hero from "./components/Hero/Hero";
 import ProductDetailsPage from "./pages/ProductDetails";
 import Home from "./pages/Home";
