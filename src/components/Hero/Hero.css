@@ -48,7 +48,6 @@
     font-weight: 700;
     line-height: 1.25;
     text-transform: uppercase;
-    /* text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); */
     animation: fadeUpText 1s 0.2s ease-out both;
 }
 
@@ -57,7 +56,6 @@
     line-height: 1.7;
     max-width: 55ch;
     opacity: 0.95;
-    /* text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8); */
     animation: fadeUpText 1s 0.4s ease-out both;
 }
 
@@ -73,6 +71,7 @@
         transform: translateY(-12px);
     }
 }
+
 @keyframes fadeInLogo {
     from {
         opacity: 0;
@@ -110,5 +109,19 @@
 
     .hero-content {
         align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo {
+        width: clamp(200px, 50vw, 250px);
+    }
+
+    .hero-title {
+        font-size: clamp(1.6rem, 8vw, 2rem);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1rem);
     }
 }

@@ -1,4 +1,4 @@
-// src/components/Hero/Hero.jsx (Sin cambios, pero lo incluyo para confirmar)
+// src/components/Hero/Hero.jsx
 
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
