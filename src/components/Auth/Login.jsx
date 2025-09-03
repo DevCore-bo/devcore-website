@@ -5,27 +5,29 @@ import logoAzul from "../../assets/LogoAzul.png";
 import { auth } from "../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Swal from "sweetalert2";
-import { useNavigate, Link } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react"; // 👈 Ojito (instala con: npm install lucide-react)
+import { useNavigate, Link } from "react-router-dom"; 
+import { useAuth } from "../../hooks/useAuth";
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [playKey, setPlayKey] = useState(0);
-  const [showPassword, setShowPassword] = useState(false); // 👈 estado para mostrar contraseña
+  const { currentUser } = useAuth(); // 1. Obtenemos el usuario actual del contexto
   const navigate = useNavigate();
- useEffect(() => {
-   
-    const timer = setTimeout(() => {
-     
-      document.documentElement.scrollTop = 0; // Para la mayoría de navegadores modernos
-      document.body.scrollTop = 0; // Para compatibilidad con otros navegadores/casos
-    }, 0);
 
- 
-    return () => clearTimeout(timer);
-    
-  }, []); 
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false); // 3. Añadimos estado de carga
+  const [showPassword, setShowPassword] = useState(false);
+  const [playKey, setPlayKey] = useState(0);
+
+  // 2. Efecto para redirigir si el usuario ya está logueado
   useEffect(() => {
+    if (currentUser) {
+      navigate("/home"); // Si hay usuario, lo mandamos al dashboard
+    }
+  }, [currentUser, navigate]);
+
+  // Efecto para animaciones y scroll (sin cambios funcionales)
+  useEffect(() => {
+    window.scrollTo(0, 0);
     const handler = () => setPlayKey((k) => k + 1);
     window.addEventListener("replay-hero", handler);
     handler();
@@ -38,8 +40,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return; // 3. Evita envíos múltiples
 
-    try {
+    setLoading(true); // 3. Activamos el estado de carga
+
+  try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
 
       Swal.fire({
@@ -55,9 +60,27 @@ const Login = () => {
         navigate("/home");
       });
     } catch (error) {
+      let mensaje = "Ocurrió un error inesperado. Intenta nuevamente.";
+
+      if (error.code === "auth/invalid-email") {
+        mensaje = "El correo electrónico no es válido.";
+      } else if (error.code === "auth/user-disabled") {
+        mensaje = "Esta cuenta ha sido deshabilitada.";
+      } else if (error.code === "auth/user-not-found") {
+        mensaje = "No existe una cuenta con este correo.";
+      } else if (error.code === "auth/wrong-password") {
+        mensaje = "La contraseña es incorrecta.";
+      } else if (error.code === "auth/too-many-requests") {
+        mensaje = "Demasiados intentos fallidos. Intenta más tarde.";
+      } else if (error.code === "auth/missing-password") {
+        mensaje = "Debes ingresar una contraseña.";
+      } else if (error.code === "auth/weak-password") {
+        mensaje = "La contraseña debe tener al menos 6 caracteres.";
+      }
+
       Swal.fire({
-        title: "Error de Login",
-        text: error.message,
+        title: "Error al Iniciar Sesión",
+        text: mensaje,
         icon: "error",
         confirmButtonText: "Aceptar",
         customClass: {
@@ -67,6 +90,7 @@ const Login = () => {
       });
     }
   };
+
 
   return (
     <div className="auth-container">
