@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics"; // si quieres usar Analytics
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,14 +11,13 @@ const firebaseConfig = {
   storageBucket: "migo-f989f.firebasestorage.app",
   messagingSenderId: "980344311771",
   appId: "1:980344311771:web:55c9b7db01bd5361b1e1fe",
-  measurementId: "G-EYG9PBYB8Z"
+  measurementId: "G-EYG9PBYB8Z",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 // Inicializa Analytics (opcional)
-const analytics = getAnalytics(app);
 
 // Exporta los servicios que usarás
 export const auth = getAuth(app);

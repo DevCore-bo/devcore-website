@@ -2,11 +2,13 @@
 
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate, BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './context/AuthProvider';
+import MainLayout from './layouts/MainLayout';
+
 
 // Tus imports de componentes
-import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
-import Footer from "./components/Footer/Footer";
 import ProductDetailsPage from "./pages/ProductDetails";
 import Home from "./pages/Home";
 import Tecnology from "./components/Tecnology/Tecnology";
@@ -45,18 +47,16 @@ const ScrollHandler = () => {
   return null; // No renderiza nada
 };
 
-// --- PASO 2: MODIFICA TU COMPONENTE APP ---
 function App() {
   return (
+      <AuthProvider>
     <Router>
-      <Navbar />
       
-      {/* Añade el ScrollHandler aquí. Escuchará los cambios de ruta globalmente. */}
       <ScrollHandler /> 
 
       <main>
         <Routes>
-          {/* Tu estructura de rutas se mantiene EXACTAMENTE IGUAL */}
+      <Route element={<MainLayout />}>
           <Route
             path="/"
             element={
@@ -91,14 +91,20 @@ function App() {
           <Route path="/organigrama" element={<Organigrama />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} />
-
-          {/* Página no encontrada */}
+          </Route>
+      <Route 
+    path="/home" 
+    element={
+      <ProtectedRoute> 
+        <Home />
+      </ProtectedRoute>
+    } 
+  />
           <Route path="*" element={<h1>404: Página no encontrada</h1>} />
         </Routes>
       </main>
-      <Footer />
     </Router>
+    </AuthProvider>
   );
 }
 
