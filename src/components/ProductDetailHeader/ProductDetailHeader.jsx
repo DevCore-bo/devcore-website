@@ -30,6 +30,11 @@ const ProductDetailHeader = ({ name, description, logoSrc, onScrollClick, downlo
               </a>
             )}
           </div>
+          {downloadUrl && (
+            <div className="warning-message">
+              <p>⚠️ Si ya tienes la aplicación instalada, por favor desinstálala antes de instalar la nueva versión.</p>
+            </div>
+          )}
         </div>
 
         <div className="header-visual-content">

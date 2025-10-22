@@ -13,6 +13,25 @@
 }
 
 
+.warning-message {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    color: #ffffff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.warning-message p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
 .planes{
     width: 100%;
     display: flex;
