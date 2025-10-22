@@ -216,7 +216,6 @@ export const productsData = [
           "5 descargas de prueba de PDF/Excel",
           "5 escaneos de factura con OCR",
         ],
-        ctaText: "Crear Cuenta Gratis",
         isFeatured: false,
       },
       {
@@ -234,7 +233,6 @@ export const productsData = [
           "10 descargas de prueba de PDF/Excel",
           "10 escaneos de facturas con OCR",
         ],
-        ctaText: "Pasar a Familiar",
         isFeatured: true,
       },
       {
@@ -251,7 +249,6 @@ export const productsData = [
           "Descargas ilimitadas de PDF/Excel",
           "Escaneos de Facturas ilimitadas con OCR",
         ],
-        ctaText: "Obtener Plan Pro",
         isFeatured: false,
       },
     ],

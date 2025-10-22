@@ -43,9 +43,6 @@ const PricingCard = ({ plan, isFeatured = false, index }) => {
         ))}
       </ul>
       
-      <a href="#" className="pricing-card__cta">
-        {plan.ctaText}
-      </a>
     </div>
   );
 };
