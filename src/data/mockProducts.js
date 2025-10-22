@@ -169,6 +169,7 @@ export const productsData = [
     description:
       "La aplicación definitiva para gestionar gastos compartidos e individuales. Sincroniza tus finanzas, liquida deudas y toma el control de tu dinero.",
     logoSrc: "/logos/banner_migo.png",
+    downloadUrl: "https://drive.google.com/drive/folders/19XhzIiXc8rdpvj43Gi_JJMsuXNC7lX6H?usp=sharing",
     keyFeatures: [
       { icon: "groups", text: "Gestión de Grupos" },
       { icon: "scan", text: "Escáner de Recibos (OCR)" },

@@ -44,6 +44,7 @@ const ProductDetailsPage = () => {
         keyFeatures={product.keyFeatures}
         onScrollClick={handleScrollToPlans}
         logoSrc={product.logoSrc}
+        downloadUrl={product.downloadUrl}
       />
       
       <DetailedFeatures features={product.detailedFeatures} />
