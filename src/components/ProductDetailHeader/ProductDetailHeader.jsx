@@ -20,7 +20,7 @@ const ProductDetailHeader = ({ name, description, logoSrc, onScrollClick, downlo
               </svg>
             </button>
             {downloadUrl && (
-              <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
+              <a href={downloadUrl} download>
                 <button className="cta-button">
                   DESCARGAR APLICACIÓN
                   <svg xmlns="http://www.w3.org/2000/svg" className="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
