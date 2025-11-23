@@ -1,0 +1,112 @@
+/* Archivo: src/index.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root {
+  --navy-blue: #001B48;
+  --turquoise-light: #21d0b2;
+  --sky-blue: #1DCDFE;
+  --purple: #851CF6;
+
+  --color-dark-blue: #0d2856;
+  --color-medium-blue: #1a252f;
+  --color-light-blue: #2c3e50;
+  --color-cyan: #00bfff;
+  --color-bright-cyan: #00dfd8;
+  --color-text-dark: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-text-light: #eaf6ff;
+  --color-background-light: #f8f9fa;
+  /* Blanco ligeramente cálido */
+
+  --navbar-height: 80px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+}
+
+main {
+  padding-top: 70px;
+  width: 100%;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 2rem;
+  color: #fff;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+section h1 {
+  text-align: center;
+}
+
+#inicio {
+  margin-top: -70px;
+  height: 100vh;
+}
+
+#nosotros {
+  background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+#tecnologias {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+}
+
+#productos {
+  background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+#contactanos {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+}
+
+@media (max-width: 768px) {
+  section {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+  }
+}

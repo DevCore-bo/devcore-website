@@ -1,0 +1,41 @@
+/* Estilos para la Fila de Características */
+.feature-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2.5rem; /* Espacio vertical y horizontal */
+  margin-top: 3rem; /* Espacio desde la descripción */
+  max-width: 900px;
+}
+
+.feature-item-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  flex-basis: 150px; /* Ancho base para cada item */
+}
+
+.feature-icon-wrapper {
+  background-color: rgba(0, 191, 255, 0.1);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 191, 255, 0.2);
+}
+
+.feature-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--color-cyan); /* Mantenemos el cian, se ve bien sobre claro */
+}
+
+.feature-text {
+  font-size: 0.9rem;
+  color: var(--color-light-blue); /* Usamos un azul oscuro para el texto */
+  line-height: 1.4;
+}

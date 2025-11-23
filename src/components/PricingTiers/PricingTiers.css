@@ -1,0 +1,231 @@
+.pricing-container {
+  position: relative; /* Contexto para posicionar el fondo y el contenido */
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  background: radial-gradient(ellipse at bottom, #f0f4f8 0%, #ffffff 100%);
+}
+
+.pricing-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+  z-index: 0;
+}
+#stars, #stars2, #stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
+}
+
+/* CAMBIO: Más partículas, más rápido y en tono azul claro */
+#stars {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    188px 1819px #87CEFA, 1528px 1195px #87CEFA, 1195px 1017px #87CEFA, 1732px 1475px #87CEFA,
+    249px 1535px #87CEFA, 1283px 1222px #87CEFA, 1918px 1083px #87CEFA, 32px 1173px #87CEFA,
+    1210px 185px #87CEFA, 583px 872px #87CEFA, 1429px 1982px #87CEFA, 1032px 556px #87CEFA,
+    1888px 112px #87CEFA, 745px 1639px #87CEFA, 1601px 744px #87CEFA, 304px 34px #87CEFA,
+    1999px 1357px #87CEFA, 801px 934px #87CEFA, 45px 1987px #87CEFA, 932px 121px #87CEFA,
+    1345px 654px #87CEFA, 1789px 1234px #87CEFA, 621px 432px #87CEFA, 1500px 1800px #87CEFA,
+    10px 1450px #87CEFA, 1950px 200px #87CEFA, 876px 1543px #87CEFA, 333px 999px #87CEFA,
+    1654px 321px #87CEFA, 543px 1789px #87CEFA, 1212px 1313px #87CEFA, 187px 834px #87CEFA;
+  animation: animStar 30s linear infinite;
+}
+#stars:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    188px 1819px #87CEFA, 1528px 1195px #87CEFA, 1195px 1017px #87CEFA, 1732px 1475px #87CEFA,
+    249px 1535px #87CEFA, 1283px 1222px #87CEFA, 1918px 1083px #87CEFA, 32px 1173px #87CEFA,
+    1210px 185px #87CEFA, 583px 872px #87CEFA, 1429px 1982px #87CEFA, 1032px 556px #87CEFA,
+    1888px 112px #87CEFA, 745px 1639px #87CEFA, 1601px 744px #87CEFA, 304px 34px #87CEFA,
+    1999px 1357px #87CEFA, 801px 934px #87CEFA, 45px 1987px #87CEFA, 932px 121px #87CEFA,
+    1345px 654px #87CEFA, 1789px 1234px #87CEFA, 621px 432px #87CEFA, 1500px 1800px #87CEFA,
+    10px 1450px #87CEFA, 1950px 200px #87CEFA, 876px 1543px #87CEFA, 333px 999px #87CEFA,
+    1654px 321px #87CEFA, 543px 1789px #87CEFA, 1212px 1313px #87CEFA, 187px 834px #87CEFA;
+}
+
+/* CAMBIO: Más partículas, más rápido y en tono azul medio */
+#stars2 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 
+    419px 1603px #1E90FF, 1944px 197px #1E90FF, 1243px 1435px #1E90FF, 182px 1220px #1E90FF,
+    1686px 1481px #1E90FF, 482px 340px #1E90FF, 1091px 1983px #1E90FF, 1333px 888px #1E90FF,
+    670px 1100px #1E90FF, 22px 540px #1E90FF, 918px 222px #1E90FF, 1573px 1777px #1E90FF,
+    1111px 1212px #1E90FF, 843px 18px #1E90FF, 1445px 654px #1E90FF, 72px 845px #1E90FF,
+    1701px 1984px #1E90FF, 555px 666px #1E90FF, 1298px 324px #1E90FF, 999px 1444px #1E90FF,
+    201px 101px #1E90FF, 1823px 1600px #1E90FF, 357px 1357px #1E90FF, 1432px 987px #1E90FF;
+  animation: animStar 60s linear infinite;
+}
+#stars2:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+    box-shadow: 
+    419px 1603px #1E90FF, 1944px 197px #1E90FF, 1243px 1435px #1E90FF, 182px 1220px #1E90FF,
+    1686px 1481px #1E90FF, 482px 340px #1E90FF, 1091px 1983px #1E90FF, 1333px 888px #1E90FF,
+    670px 1100px #1E90FF, 22px 540px #1E90FF, 918px 222px #1E90FF, 1573px 1777px #1E90FF,
+    1111px 1212px #1E90FF, 843px 18px #1E90FF, 1445px 654px #1E90FF, 72px 845px #1E90FF,
+    1701px 1984px #1E90FF, 555px 666px #1E90FF, 1298px 324px #1E90FF, 999px 1444px #1E90FF,
+    201px 101px #1E90FF, 1823px 1600px #1E90FF, 357px 1357px #1E90FF, 1432px 987px #1E90FF;
+}
+/* CAMBIO: Más partículas, más rápido y en tono azul intenso */
+#stars3 {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  box-shadow: 
+    936px 166px #4169E1, 882px 1461px #4169E1, 356px 632px #4169E1, 1001px 815px #4169E1,
+    1724px 259px #4169E1, 1363px 1303px #4169E1, 123px 999px #4169E1, 1876px 543px #4169E1,
+    666px 1666px #4169E1, 1500px 1500px #4169E1, 444px 1122px #4169E1, 1980px 890px #4169E1,
+    1621px 1823px #4169E1, 289px 128px #4169E1, 1145px 1045px #4169E1, 1901px 1902px #4169E1,
+    813px 402px #4169E1, 1399px 23px #4169E1, 101px 502px #4169E1, 1776px 1234px #4169E1;
+  animation: animStar 90s linear infinite;
+}
+#stars3:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  box-shadow: 
+    936px 166px #4169E1, 882px 1461px #4169E1, 356px 632px #4169E1, 1001px 815px #4169E1,
+    1724px 259px #4169E1, 1363px 1303px #4169E1, 123px 999px #4169E1, 1876px 543px #4169E1,
+    666px 1666px #4169E1, 1500px 1500px #4169E1, 444px 1122px #4169E1, 1980px 890px #4169E1,
+    1621px 1823px #4169E1, 289px 128px #4169E1, 1145px 1045px #4169E1, 1901px 1902px #4169E1,
+    813px 402px #4169E1, 1399px 23px #4169E1, 101px 502px #4169E1, 1776px 1234px #4169E1;
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+/* --- FIN: Estilos para el fondo de partículas --- */
+
+.pricing-section__content-wrapper {
+  position: relative; /* Lo pone por encima de las partículas */
+  z-index: 1;         
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el header y la grid horizontalmente */
+}
+
+/* --- Estilos del Header --- */
+.pricing-section__header {
+    text-align: center;
+    margin-bottom: 2.5rem; 
+    max-width: 700px;
+    width: 100%;
+}
+
+.pricing-section__title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: var(--color-dark-blue); 
+    line-height: 1.2;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.pricing-section__header.is-visible .pricing-section__title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pricing-section__subtitle {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: #4b5563; 
+    margin-top: 0.75rem;
+    max-width: 55ch;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.pricing-section__header.is-visible .pricing-section__subtitle {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s; 
+}
+
+/* --- Estilos de la Grid de Precios --- */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    width: 100%;
+    align-items: stretch; 
+}
+
+.pricing-grid .pricing-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.pricing-grid.animate-in .pricing-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animación escalonada para las tarjetas */
+.pricing-grid.animate-in .pricing-card:nth-child(2) { transition-delay: 0.1s; }
+.pricing-grid.animate-in .pricing-card:nth-child(3) { transition-delay: 0.2s; }
+.pricing-grid.animate-in .pricing-card:nth-child(4) { transition-delay: 0.3s; }
+
+/* --- Media Queries (Diseño Adaptable) --- */
+@media (min-width: 768px) {
+    .pricing-section {
+        padding: 3rem 2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .pricing-grid {
+        max-width: 1400px;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-height: 720px) {
+    .pricing-section {
+        min-height: auto;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+}

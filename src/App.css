@@ -1,0 +1,73 @@
+/* Archivo: src/App.css */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  font-size: 2rem;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  scroll-margin-top: 70px; 
+}
+
+.style_title {
+  color: #001B48;
+}
+
+section h1 {
+  margin: 0;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#inicio {
+  position: relative;
+}
+
+#nosotros {
+  background: url('./assets/Frame27.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#tecnologias {
+  background: url('./assets/Frame25.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: fit-content;
+  
+}
+
+#productos {
+  background: url('./assets/Frame27.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#contactanos {
+  background: url('./assets/Frame25.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+@media (max-width: 768px) {
+  section {
+    font-size: 1.8rem;
+    padding: 1.5rem;
+    min-height: 80vh;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    font-size: 1.5rem;
+    padding: 1rem;
+    min-height: 70vh;
+  }
+}

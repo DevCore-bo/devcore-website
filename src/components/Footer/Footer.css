@@ -1,0 +1,133 @@
+.footer {
+    background: #0d2856;
+    color: #eaf6ff;
+    padding: 2.2rem 1rem 1.2rem;
+    position: relative;
+  z-index: 2;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.2rem;
+    align-items: start;
+}
+
+.footer-title {
+    color: #21D0B2;
+    margin: 0 0 0.8rem 0;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+.social-row {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0.5rem 0 0.6rem;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf6ff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.icon-btn .svg {
+    width: 20px;
+    height: 20px;
+    fill: #0d2856;
+}
+
+.icon-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    background: #ffffff;
+}
+
+.handle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.55rem;
+}
+
+.product-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: #eaf6ff;
+}
+
+.product-link:hover {
+    color: #00cfff;
+}
+
+.product-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #eaf6ff;
+    display: grid;
+    place-items: center;
+    flex: 0 0 32px;
+}
+
+.product-badge .svg {
+    width: 18px;
+    height: 18px;
+    fill: #0d2856;
+}
+
+/* Horarios */
+.hours {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    opacity: 0.95;
+}
+
+.hours li {
+    margin: 0.2rem 0;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 1.4rem auto 0;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    font-size: 0.86rem;
+    color: #cfeaff;
+    letter-spacing: 0.2px;
+}
+@media (max-width: 960px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+    }
+    .footer {
+        padding: 1.8rem 1rem 1.1rem;
+    }
+}

@@ -1,0 +1,127 @@
+/* src/components/Hero/Hero.css */
+
+.hero-section {
+    position: relative;
+    background-image: url('../../assets/inicio.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start !important;
+    text-align: left !important;
+
+    padding: 0 8%;
+    color: #fff;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 75% 50%, transparent 25%, rgba(5, 11, 22, 0.75) 65%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hero-logo {
+    width: clamp(290px, 320vw, 540px);
+    height: auto;
+    margin-bottom: 1.5rem;
+    animation: fadeInLogo 1.2s ease-out both;
+    animation: float 6s ease-in-out 1.2s infinite;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    text-transform: uppercase;
+    animation: fadeUpText 1s 0.2s ease-out both;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    max-width: 55ch;
+    opacity: 0.95;
+    animation: fadeUpText 1s 0.4s ease-out both;
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeUpText {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0 1.5rem;
+    }
+
+    .hero-section::before {
+        background: rgba(5, 11, 22, 0.7);
+    }
+
+    .hero-content {
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo {
+        width: clamp(200px, 50vw, 250px);
+    }
+
+    .hero-title {
+        font-size: clamp(1.6rem, 8vw, 2rem);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+    }
+}
