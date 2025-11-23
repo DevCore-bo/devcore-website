@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
-import { useNavigate } from "react-router-dom";   
-import { 
-  Users, 
-  BarChart3, 
-  Eye, 
-  Settings, 
+import { useNavigate } from "react-router-dom";
+import {
+  Users,
+  BarChart3,
+  Eye,
+  Settings,
   LogOut,
   Search,
   Filter,
@@ -26,7 +26,7 @@ const Home = () => {
     newUsersThisMonth: 0,
     totalTransactions: 0
   });
-    const { currentUser, logout } = useAuth(); 
+  const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -103,18 +103,18 @@ const Home = () => {
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-const StatCard = ({ icon: IconComponent, title, value, subtitle, color }) => (
-  <div className="stat-card">
-    <div className="stat-icon" style={{ backgroundColor: `var(--${color})` }}>
-      <IconComponent size={24} color="white" />
+  const StatCard = ({ icon: IconComponent, title, value, subtitle, color }) => (
+    <div className="stat-card">
+      <div className="stat-icon" style={{ backgroundColor: `var(--${color})` }}>
+        <IconComponent size={24} color="white" />
+      </div>
+      <div className="stat-content">
+        <h3>{value}</h3>
+        <p>{title}</p>
+        {subtitle && <span>{subtitle}</span>}
+      </div>
     </div>
-    <div className="stat-content">
-      <h3>{value}</h3>
-      <p>{title}</p>
-      {subtitle && <span>{subtitle}</span>}
-    </div>
-  </div>
-);
+  );
 
   const UserChart = () => {
     const chartData = [
@@ -132,9 +132,9 @@ const StatCard = ({ icon: IconComponent, title, value, subtitle, color }) => (
         <div className="chart">
           {chartData.map((data, index) => (
             <div key={index} className="chart-bar-container">
-              <div 
+              <div
                 className="chart-bar"
-                style={{ 
+                style={{
                   height: `${(data.users / maxValue) * 100}%`,
                   background: `linear-gradient(180deg, var(--turquoise-light), var(--sky-blue))`
                 }}
@@ -243,7 +243,7 @@ const StatCard = ({ icon: IconComponent, title, value, subtitle, color }) => (
             </div>
           )}
         </main>
-        
+
         {/* Footer Minimalista */}
         <footer className="dashboard-footer">
           <p>© {new Date().getFullYear()} DevCore. Todos los derechos reservados.</p>
