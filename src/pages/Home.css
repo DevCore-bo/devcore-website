@@ -772,7 +772,8 @@
   color: var(--navy-blue);
 }
 
-.form-group select {
+.form-group select,
+.form-group input {
   padding: 0.75rem;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
@@ -780,11 +781,18 @@
   color: var(--navy-blue);
   transition: border-color 0.2s;
   background-color: white;
+  width: 100%;
+  /* Ensure full width */
+  box-sizing: border-box;
+  /* Handle padding correctly */
 }
 
-.form-group select:focus {
+.form-group select:focus,
+.form-group input:focus {
   outline: none;
   border-color: var(--turquoise-light);
+  box-shadow: 0 0 0 3px rgba(33, 208, 178, 0.1);
+  /* Add subtle focus ring */
 }
 
 .modal-actions {

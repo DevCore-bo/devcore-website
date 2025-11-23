@@ -13,7 +13,8 @@ import {
   Activity,
   X,
   Save,
-  Trash2
+  Trash2,
+  CreditCard
 } from "lucide-react";
 import Icon from "../components/Icon/Icon";
 import { useAuth } from '../hooks/useAuth';
@@ -24,7 +25,9 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState([]);
+  const [planes, setPlanes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingPlanes, setLoadingPlanes] = useState(false);
   const [stats, setStats] = useState({
     totalUsers: 0,
     activeUsers: 0,
@@ -34,11 +37,18 @@ const Home = () => {
 
   // Modal State
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState("view"); // "view" or "edit"
+  const [modalType, setModalType] = useState("view"); // "view", "edit", "editPlan"
   const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [editFormData, setEditFormData] = useState({
     estado: "",
     subscriptionPlan: ""
+  });
+  const [editPlanData, setEditPlanData] = useState({
+    grupos_limite: 0,
+    personas_limite: 0,
+    ocr_limite: 0,
+    reporte_limite: 0
   });
 
   const { currentUser, logout } = useAuth();
@@ -78,6 +88,23 @@ const Home = () => {
     }
   };
 
+  // Fetch plans from Firebase
+  const fetchPlanes = async () => {
+    setLoadingPlanes(true);
+    try {
+      const querySnapshot = await getDocs(collection(db, "planes_subscripcion"));
+      const planesList = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setPlanes(planesList);
+    } catch (error) {
+      console.error("Error fetching plans:", error);
+    } finally {
+      setLoadingPlanes(false);
+    }
+  };
+
   const calculateStats = (usersList) => {
     const now = new Date();
     setStats({
@@ -93,6 +120,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchUsers();
+    fetchPlanes();
   }, []);
 
   const handleViewUser = (user) => {
@@ -111,33 +139,67 @@ const Home = () => {
     setModalOpen(true);
   };
 
+  const handleEditPlan = (plan) => {
+    setSelectedPlan(plan);
+    setEditPlanData({
+      grupos_limite: plan.grupos_limite || 0,
+      personas_limite: plan.personas_limite || 0,
+      ocr_limite: plan.ocr_limite || 0,
+      reporte_limite: plan.reporte_limite || 0
+    });
+    setModalType("editPlan");
+    setModalOpen(true);
+  };
+
   const handleCloseModal = () => {
     setModalOpen(false);
     setSelectedUser(null);
+    setSelectedPlan(null);
   };
 
   const handleSaveChanges = async () => {
-    if (!selectedUser) return;
+    if (modalType === "edit" && selectedUser) {
+      try {
+        const userRef = doc(db, "users", selectedUser.id);
+        await updateDoc(userRef, {
+          estado: editFormData.estado,
+          subscriptionPlan: editFormData.subscriptionPlan
+        });
 
-    try {
-      const userRef = doc(db, "users", selectedUser.id);
-      await updateDoc(userRef, {
-        estado: editFormData.estado,
-        subscriptionPlan: editFormData.subscriptionPlan
-      });
+        // Update local state
+        const updatedUsers = users.map(u =>
+          u.id === selectedUser.id
+            ? { ...u, estado: editFormData.estado, subscriptionPlan: editFormData.subscriptionPlan }
+            : u
+        );
+        setUsers(updatedUsers);
+        calculateStats(updatedUsers);
+        handleCloseModal();
+      } catch (error) {
+        console.error("Error updating user:", error);
+        alert("Error al actualizar el usuario");
+      }
+    } else if (modalType === "editPlan" && selectedPlan) {
+      try {
+        const planRef = doc(db, "planes_subscripcion", selectedPlan.id);
+        await updateDoc(planRef, {
+          grupos_limite: Number(editPlanData.grupos_limite),
+          personas_limite: Number(editPlanData.personas_limite),
+          ocr_limite: Number(editPlanData.ocr_limite),
+          reporte_limite: Number(editPlanData.reporte_limite)
+        });
 
-      // Update local state
-      const updatedUsers = users.map(u =>
-        u.id === selectedUser.id
-          ? { ...u, estado: editFormData.estado, subscriptionPlan: editFormData.subscriptionPlan }
-          : u
-      );
-      setUsers(updatedUsers);
-      calculateStats(updatedUsers);
-      handleCloseModal();
-    } catch (error) {
-      console.error("Error updating user:", error);
-      alert("Error al actualizar el usuario");
+        const updatedPlanes = planes.map(p =>
+          p.id === selectedPlan.id
+            ? { ...p, ...editPlanData, grupos_limite: Number(editPlanData.grupos_limite), personas_limite: Number(editPlanData.personas_limite), ocr_limite: Number(editPlanData.ocr_limite), reporte_limite: Number(editPlanData.reporte_limite) }
+            : p
+        );
+        setPlanes(updatedPlanes);
+        handleCloseModal();
+      } catch (error) {
+        console.error("Error updating plan:", error);
+        alert("Error al actualizar el plan");
+      }
     }
   };
 
@@ -225,6 +287,10 @@ const Home = () => {
           <button className={`nav-item ${activeTab === "users" ? "active" : ""}`} onClick={() => setActiveTab("users")}>
             <Users size={20} />
             <span>Usuarios</span>
+          </button>
+          <button className={`nav-item ${activeTab === "planes" ? "active" : ""}`} onClick={() => setActiveTab("planes")}>
+            <CreditCard size={20} />
+            <span>Gestión de Planes</span>
           </button>
         </nav>
         <div className="sidebar-footer">
@@ -329,6 +395,52 @@ const Home = () => {
               </div>
             </div>
           )}
+
+          {activeTab === "planes" && (
+            <div className="dashboard-content">
+              <div className="table-container">
+                <div className="table-header">
+                  <h2>Gestión de Planes</h2>
+                </div>
+                <div className="table-wrapper">
+                  {loadingPlanes ? (
+                    <div className="loading-state">Cargando planes...</div>
+                  ) : (
+                    <table className="users-table">
+                      <thead>
+                        <tr>
+                          <th>Nombre</th>
+                          <th>Límite Grupos</th>
+                          <th>Límite Personas</th>
+                          <th>Límite OCR</th>
+                          <th>Límite Reportes</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {planes.map((plan) => (
+                          <tr key={plan.id}>
+                            <td><span className="plan-badge">{plan.nombre}</span></td>
+                            <td>{plan.grupos_limite}</td>
+                            <td>{plan.personas_limite}</td>
+                            <td>{plan.ocr_limite}</td>
+                            <td>{plan.reporte_limite}</td>
+                            <td>
+                              <div className="action-buttons">
+                                <button className="action-btn settings" onClick={() => handleEditPlan(plan)}>
+                                  <Settings size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </main>
 
         <footer className="dashboard-footer">
@@ -337,51 +449,58 @@ const Home = () => {
       </div>
 
       {/* Modal */}
-      {modalOpen && selectedUser && (
+      {modalOpen && (
         <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
-              <h2>{modalType === "view" ? "Detalles del Usuario" : "Editar Usuario"}</h2>
+              <h2>
+                {modalType === "view" ? "Detalles del Usuario" :
+                  modalType === "edit" ? "Editar Usuario" :
+                    "Editar Plan"}
+              </h2>
               <button className="close-btn" onClick={handleCloseModal}>
                 <X size={24} />
               </button>
             </div>
 
             <div className="modal-body">
-              <div className="user-profile-header">
-                {selectedUser.profilePictureUrl ? (
-                  <img src={selectedUser.profilePictureUrl} alt={selectedUser.name} className="large-avatar" />
-                ) : (
-                  <div className="large-avatar-placeholder">{selectedUser.name?.charAt(0)}</div>
-                )}
-                <div className="user-header-info">
-                  <h3>{selectedUser.name}</h3>
-                  <p>{selectedUser.email}</p>
-                </div>
-              </div>
+              {modalType === "view" && selectedUser && (
+                <>
+                  <div className="user-profile-header">
+                    {selectedUser.profilePictureUrl ? (
+                      <img src={selectedUser.profilePictureUrl} alt={selectedUser.name} className="large-avatar" />
+                    ) : (
+                      <div className="large-avatar-placeholder">{selectedUser.name?.charAt(0)}</div>
+                    )}
+                    <div className="user-header-info">
+                      <h3>{selectedUser.name}</h3>
+                      <p>{selectedUser.email}</p>
+                    </div>
+                  </div>
+                  <div className="user-details-grid">
+                    <div className="detail-item">
+                      <label>ID Usuario</label>
+                      <p>{selectedUser.id}</p>
+                    </div>
+                    <div className="detail-item">
+                      <label>Estado</label>
+                      <span className={`status ${selectedUser.estado === "activo" ? "active" : "inactive"}`}>
+                        {selectedUser.estado}
+                      </span>
+                    </div>
+                    <div className="detail-item">
+                      <label>Plan de Suscripción</label>
+                      <p>{selectedUser.subscriptionPlan}</p>
+                    </div>
+                    <div className="detail-item">
+                      <label>Fecha de Registro</label>
+                      <p>{new Date(selectedUser.createdAt).toLocaleDateString()}</p>
+                    </div>
+                  </div>
+                </>
+              )}
 
-              {modalType === "view" ? (
-                <div className="user-details-grid">
-                  <div className="detail-item">
-                    <label>ID Usuario</label>
-                    <p>{selectedUser.id}</p>
-                  </div>
-                  <div className="detail-item">
-                    <label>Estado</label>
-                    <span className={`status ${selectedUser.estado === "activo" ? "active" : "inactive"}`}>
-                      {selectedUser.estado}
-                    </span>
-                  </div>
-                  <div className="detail-item">
-                    <label>Plan de Suscripción</label>
-                    <p>{selectedUser.subscriptionPlan}</p>
-                  </div>
-                  <div className="detail-item">
-                    <label>Fecha de Registro</label>
-                    <p>{new Date(selectedUser.createdAt).toLocaleDateString()}</p>
-                  </div>
-                </div>
-              ) : (
+              {modalType === "edit" && selectedUser && (
                 <div className="edit-form">
                   <div className="form-group">
                     <label>Estado</label>
@@ -401,7 +520,7 @@ const Home = () => {
                     >
                       <option value="basico">Basico</option>
                       <option value="familiar">Familiar</option>
-                      <option value="premium">Premium</option>
+                      <option value="pro">Pro</option>
                     </select>
                   </div>
 
@@ -410,6 +529,58 @@ const Home = () => {
                       <Trash2 size={18} /> Eliminar Usuario
                     </button>
                     <button className="btn-save" onClick={handleSaveChanges}>
+                      <Save size={18} /> Guardar Cambios
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {modalType === "editPlan" && selectedPlan && (
+                <div className="edit-form">
+                  <div className="form-group">
+                    <label>Nombre del Plan</label>
+                    <input
+                      type="text"
+                      value={selectedPlan.nombre}
+                      disabled
+                      style={{ backgroundColor: '#f3f4f6', cursor: 'not-allowed' }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Límite de Grupos</label>
+                    <input
+                      type="number"
+                      value={editPlanData.grupos_limite}
+                      onChange={(e) => setEditPlanData({ ...editPlanData, grupos_limite: e.target.value })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Límite de Personas</label>
+                    <input
+                      type="number"
+                      value={editPlanData.personas_limite}
+                      onChange={(e) => setEditPlanData({ ...editPlanData, personas_limite: e.target.value })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Límite de OCR</label>
+                    <input
+                      type="number"
+                      value={editPlanData.ocr_limite}
+                      onChange={(e) => setEditPlanData({ ...editPlanData, ocr_limite: e.target.value })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Límite de Reportes</label>
+                    <input
+                      type="number"
+                      value={editPlanData.reporte_limite}
+                      onChange={(e) => setEditPlanData({ ...editPlanData, reporte_limite: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="modal-actions">
+                    <button className="btn-save" onClick={handleSaveChanges} style={{ width: '100%' }}>
                       <Save size={18} /> Guardar Cambios
                     </button>
                   </div>
