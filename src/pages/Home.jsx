@@ -32,7 +32,9 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  BarChart,
+  Bar
 } from 'recharts';
 
 const Home = () => {
@@ -138,6 +140,19 @@ const Home = () => {
       totalTransactions: 0 // Placeholder as transaction data might not be in user doc
     });
   };
+
+  // Calculate Plan Distribution Data
+  const planCounts = users.reduce((acc, user) => {
+    const plan = (user.subscriptionPlan || 'basico').toLowerCase();
+    acc[plan] = (acc[plan] || 0) + 1;
+    return acc;
+  }, { basico: 0, familiar: 0, pro: 0 });
+
+  const pieData = [
+    { name: 'Básico', value: planCounts.basico, color: '#94a3b8' },
+    { name: 'Familiar', value: planCounts.familiar, color: '#f97316' },
+    { name: 'Pro', value: planCounts.pro, color: '#22c55e' },
+  ].filter(d => d.value > 0);
 
   const handleViewUser = (user) => {
     setSelectedUser(user);
@@ -258,59 +273,96 @@ const Home = () => {
   );
 
   const UserChart = () => {
-    // Placeholder chart data - in a real app, this would be dynamic
-    const chartData = [
-      { month: "Jun", users: 12 },
-      { month: "Jul", users: 19 },
-      { month: "Ago", users: 25 },
-      { month: "Sep", users: 29 }
-    ];
+    // Dynamic Chart Data: Last 6 months cumulative growth
+    const getGrowthData = () => {
+      const now = new Date();
+      const data = [];
+      
+      // Generate last 6 months keys (e.g., "Nov")
+      for (let i = 5; i >= 0; i--) {
+        const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        const monthName = d.toLocaleString('default', { month: 'short' });
+        const year = d.getFullYear();
+        const month = d.getMonth(); // 0-11
 
-    const maxValue = Math.max(...chartData.map(d => d.users));
+        // Filter users created BEFORE the end of this month
+        // End of month date: new Date(year, month + 1, 0)
+        const endOfMonth = new Date(year, month + 1, 0);
+        
+        const count = users.filter(u => {
+          if (!u.createdAt) return false;
+          const created = new Date(u.createdAt);
+          return created <= endOfMonth;
+        }).length;
+
+        data.push({ month: monthName, users: count });
+      }
+      return data;
+    };
+
+    const chartData = getGrowthData();
 
     return (
       <div className="chart-container">
         <h3>Crecimiento de Usuarios</h3>
-        <div className="chart">
-          {chartData.map((data, index) => (
-            <div key={index} className="chart-bar-container">
-              <div
-                className="chart-bar"
-                style={{
-                  height: `${(data.users / maxValue) * 100}%`,
-                  background: `linear-gradient(180deg, var(--turquoise-light), var(--sky-blue))`
-                }}
-              />
-              <span className="chart-label">{data.month}</span>
-              <span className="chart-value">{data.users}</span>
-            </div>
-          ))}
+        <div style={{ width: '100%', height: 200 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData}>
+               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
+               <XAxis 
+                  dataKey="month" 
+                  tick={{ fontSize: 12, fill: '#6b7280' }} 
+                  axisLine={{ stroke: '#e5e7eb' }}
+                  tickLine={false}
+               />
+               <YAxis 
+                  tick={{ fontSize: 12, fill: '#6b7280' }} 
+                  axisLine={false}
+                  tickLine={false}
+                  allowDecimals={false}
+               />
+               <Tooltip 
+                 cursor={{ fill: 'transparent' }}
+                 contentStyle={{ 
+                   backgroundColor: 'white', 
+                   borderRadius: '8px', 
+                   border: 'none', 
+                   boxShadow: '0 4px 12px rgba(0,0,0,0.1)' 
+                 }} 
+               />
+               <Bar 
+                 dataKey="users" 
+                 fill="url(#colorGradient)" 
+                 radius={[4, 4, 0, 0]}
+                 animationDuration={1500}
+               />
+               <defs>
+                 <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                   <stop offset="0%" stopColor="var(--turquoise-light)" stopOpacity={1}/>
+                   <stop offset="100%" stopColor="var(--sky-blue)" stopOpacity={1}/>
+                 </linearGradient>
+               </defs>
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     );
   };
 
   const PlanDistributionChart = () => {
-    const planCounts = users.reduce((acc, user) => {
-      const plan = (user.subscriptionPlan || 'basico').toLowerCase();
-      acc[plan] = (acc[plan] || 0) + 1;
-      return acc;
-    }, { basico: 0, familiar: 0, pro: 0 });
-
-    const data = [
-      { name: 'Básico', value: planCounts.basico, color: '#94a3b8' },
-      { name: 'Familiar', value: planCounts.familiar, color: '#f97316' },
-      { name: 'Pro', value: planCounts.pro, color: '#22c55e' },
-    ].filter(d => d.value > 0);
-
     return (
-      <div className="chart-container">
+      <div 
+        className="chart-container" 
+        onClick={() => { setModalType("distributionChart"); setModalOpen(true); }}
+        style={{ cursor: 'pointer', transition: 'transform 0.2s' }}
+        title="Haz clic para ver en detalle"
+      >
         <h3>Distribución de Planes</h3>
         <div style={{ width: '100%', height: 200 }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={data}
+                data={pieData}
                 cx="50%"
                 cy="50%"
                 innerRadius={60}
@@ -327,7 +379,7 @@ const Home = () => {
                     <text
                       x={x}
                       y={y}
-                      fill={data[index].color} // Use the color of the slice
+                      fill={pieData[index].color} // Use the color of the slice
                       textAnchor={x > cx ? 'start' : 'end'}
                       dominantBaseline="central"
                       fontSize="12px"
@@ -339,7 +391,7 @@ const Home = () => {
                 }}
                 labelLine={false} // Hide the line connecting label to slice
               >
-                {data.map((entry, index) => (
+                {pieData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
@@ -674,7 +726,8 @@ const Home = () => {
               <h2>
                 {modalType === "view" ? "Detalles del Usuario" :
                   modalType === "edit" ? "Editar Usuario" :
-                    "Editar Plan"}
+                    modalType === "editPlan" ? "Editar Plan" :
+                      "Distribución de Planes"}
               </h2>
               <button className="close-btn" onClick={handleCloseModal}>
                 <X size={24} />
@@ -682,6 +735,57 @@ const Home = () => {
             </div>
 
             <div className="modal-body">
+              {modalType === "distributionChart" && (
+                <div style={{ width: '100%', height: 400, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                   <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={pieData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={80}
+                        outerRadius={120}
+                        paddingAngle={5}
+                        dataKey="value"
+                        label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+                           const RADIAN = Math.PI / 180;
+                           const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                           const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                           const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                          
+                           return (
+                            <text 
+                              x={x} 
+                              y={y} 
+                              fill="white" 
+                              textAnchor="middle" 
+                              dominantBaseline="central"
+                              fontWeight="bold"
+                              fontSize="14px"
+                            >
+                              {`${(percent * 100).toFixed(0)}%`}
+                            </text>
+                          );
+                        }}
+                        labelLine={false}
+                      >
+                        {pieData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend verticalAlign="bottom" height={36}/>
+                    </PieChart>
+                  </ResponsiveContainer>
+                   <div style={{ marginTop: '1rem', textAlign: 'center', color: 'var(--navy-blue)' }}>
+                    <p><strong>Total Usuarios:</strong> {users.length}</p>
+                    {pieData.map(d => (
+                        <p key={d.name}><strong>{d.name}:</strong> {d.value} usuarios</p>
+                    ))}
+                   </div>
+                </div>
+              )}
+
               {modalType === "view" && selectedUser && (
                 <>
                   <div className="user-profile-header">
