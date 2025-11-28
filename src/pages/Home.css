@@ -1,3 +1,15 @@
+:root {
+  --navy-blue: #1e293b;
+  --color-dark-blue: #0f172a;
+  --turquoise-light: #2dd4bf;
+  --sky-blue: #38bdf8;
+  --color-text-secondary: #64748b;
+  --purple: #8b5cf6;
+  --orange: #f97316;
+  --green: #22c55e;
+  --gray: #94a3b8;
+}
+
 @keyframes fadeInSlideUp {
   from {
     opacity: 0;
@@ -89,7 +101,8 @@
 /* --- TARJETAS Y GRÁFICOS --- */
 .stat-card,
 .chart-container,
-.table-container {
+.table-container,
+.revenue-section {
   /* Adorno: Animación de entrada */
   animation: fadeInSlideUp 0.5s ease-out forwards;
 }

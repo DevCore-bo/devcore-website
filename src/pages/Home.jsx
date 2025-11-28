@@ -14,12 +14,26 @@ import {
   X,
   Save,
   Trash2,
-  CreditCard
+  CreditCard,
+  DollarSign
 } from "lucide-react";
 import Icon from "../components/Icon/Icon";
 import { useAuth } from '../hooks/useAuth';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, deleteDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell
+} from 'recharts';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -66,18 +80,16 @@ const Home = () => {
     }
   };
 
-  // Fetch users from Firebase
-  const fetchUsers = async () => {
+  // Real-time listener for users
+  useEffect(() => {
     setLoading(true);
-    try {
-      const querySnapshot = await getDocs(collection(db, "users"));
+    const unsubscribe = onSnapshot(collection(db, "users"), (querySnapshot) => {
       const usersList = querySnapshot.docs.map(doc => {
         const data = doc.data();
         return {
           id: doc.id,
           ...data,
-          // Ensure consistent field mapping
-          status: data.estado || "inactivo", // Map 'estado' to 'status' for UI logic if needed, or just use 'estado'
+          status: data.estado || "inactivo",
           createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : data.createdAt,
           lastLogin: data.lastLogin?.toDate ? data.lastLogin.toDate().toISOString() : (data.lastLogin || new Date().toISOString()),
           subscriptionStartDate: data.subscriptionStartDate?.toDate ? data.subscriptionStartDate.toDate().toISOString() : data.subscriptionStartDate
@@ -85,12 +97,17 @@ const Home = () => {
       });
       setUsers(usersList);
       calculateStats(usersList);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    } finally {
       setLoading(false);
-    }
-  };
+    }, (error) => {
+      console.error("Error listening to users:", error);
+      setLoading(false);
+    });
+
+    // Fetch planes (keep as getDocs for now unless requested otherwise, but it's fine)
+    fetchPlanes();
+
+    return () => unsubscribe();
+  }, []);
 
   // Fetch plans from Firebase
   const fetchPlanes = async () => {
@@ -121,11 +138,6 @@ const Home = () => {
       totalTransactions: 0 // Placeholder as transaction data might not be in user doc
     });
   };
-
-  useEffect(() => {
-    fetchUsers();
-    fetchPlanes();
-  }, []);
 
   const handleViewUser = (user) => {
     setSelectedUser(user);
@@ -278,6 +290,129 @@ const Home = () => {
     );
   };
 
+  const PlanDistributionChart = () => {
+    const planCounts = users.reduce((acc, user) => {
+      const plan = (user.subscriptionPlan || 'basico').toLowerCase();
+      acc[plan] = (acc[plan] || 0) + 1;
+      return acc;
+    }, { basico: 0, familiar: 0, pro: 0 });
+
+    const data = [
+      { name: 'Básico', value: planCounts.basico, color: '#94a3b8' },
+      { name: 'Familiar', value: planCounts.familiar, color: '#f97316' },
+      { name: 'Pro', value: planCounts.pro, color: '#22c55e' },
+    ].filter(d => d.value > 0);
+
+    return (
+      <div className="chart-container">
+        <h3>Distribución de Planes</h3>
+        <div style={{ width: '100%', height: 200 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={80}
+                paddingAngle={5}
+                dataKey="value"
+                label={({ cx, cy, midAngle, outerRadius, percent, index }) => {
+                  const RADIAN = Math.PI / 180;
+                  const radius = outerRadius + 10; // Distance of the label from the center
+                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                  return (
+                    <text
+                      x={x}
+                      y={y}
+                      fill={data[index].color} // Use the color of the slice
+                      textAnchor={x > cx ? 'start' : 'end'}
+                      dominantBaseline="central"
+                      fontSize="12px"
+                      fontWeight="bold"
+                    >
+                      {`${(percent * 100).toFixed(0)}%`}
+                    </text>
+                  );
+                }}
+                labelLine={false} // Hide the line connecting label to slice
+              >
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    );
+  };
+
+  const RevenueOverview = () => {
+    const calculations = users.reduce((acc, user) => {
+      const plan = (user.subscriptionPlan || 'basico').toLowerCase();
+      if (plan === 'basico') { acc.basicCount++; acc.basicRev += 25; }
+      if (plan === 'familiar') { acc.famCount++; acc.famRev += 20; }
+      if (plan === 'pro') { acc.proCount++; acc.proRev += 35; }
+      return acc;
+    }, { basicCount: 0, basicRev: 0, famCount: 0, famRev: 0, proCount: 0, proRev: 0 });
+
+    const totalRev = calculations.basicRev + calculations.famRev + calculations.proRev;
+
+    return (
+      <div className="revenue-section" style={{ marginTop: '2rem' }}>
+        <h2 style={{ marginBottom: '1.5rem', color: 'var(--navy-blue)' }}>Ingresos Estimados</h2>
+        <div className="stats-grid">
+          <StatCard icon={DollarSign} title="Ingreso Mensual Total" value={`${totalRev} Bs`} subtitle="Estimado" color="purple" />
+          <StatCard icon={Users} title="Ingreso Básico" value={`${calculations.basicRev} Bs`} subtitle={`${calculations.basicCount} usuarios (25Bs/u)`} color="gray" />
+          <StatCard icon={Users} title="Ingreso Familiar" value={`${calculations.famRev} Bs`} subtitle={`${calculations.famCount} usuarios (20Bs/u)`} color="orange" />
+          <StatCard icon={Users} title="Ingreso Pro" value={`${calculations.proRev} Bs`} subtitle={`${calculations.proCount} usuarios (35Bs/u)`} color="green" />
+        </div>
+      </div>
+    );
+  };
+
+  const getHistoryData = () => {
+    // 1. Filter users with relevant plans and a start date
+    const relevantUsers = users.filter(u =>
+      (u.subscriptionPlan === 'familiar' || u.subscriptionPlan === 'pro') &&
+      u.subscriptionStartDate
+    );
+
+    // 2. Sort by date
+    relevantUsers.sort((a, b) => new Date(a.subscriptionStartDate) - new Date(b.subscriptionStartDate));
+
+    // 3. Create time series
+    const historyMap = new Map();
+    let runningFamiliar = 0;
+    let runningPro = 0;
+
+    relevantUsers.forEach(user => {
+      const dateKey = new Date(user.subscriptionStartDate).toLocaleDateString(); // Group by day
+      
+      if (!historyMap.has(dateKey)) {
+        historyMap.set(dateKey, { date: dateKey, familiar: runningFamiliar, pro: runningPro });
+      }
+      
+      const current = historyMap.get(dateKey);
+      if (user.subscriptionPlan === 'familiar') {
+        runningFamiliar++;
+        current.familiar = runningFamiliar;
+      } else if (user.subscriptionPlan === 'pro') {
+        runningPro++;
+        current.pro = runningPro;
+      }
+    });
+
+    return Array.from(historyMap.values());
+  };
+
+  const historyData = getHistoryData();
+
   return (
     <div className="dashboard-layout">
       {/* Sidebar */}
@@ -334,7 +469,9 @@ const Home = () => {
               </div>
               <div className="charts-grid">
                 <UserChart />
+                <PlanDistributionChart />
               </div>
+              <RevenueOverview />
             </div>
           )}
 
@@ -430,6 +567,55 @@ const Home = () => {
 
           {activeTab === "planes" && (
             <div className="dashboard-content">
+              <div className="chart-container" style={{ marginBottom: '2rem' }}>
+                <h3>Historial de Planes Activos</h3>
+                <div style={{ width: '100%', height: 300 }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={historyData}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
+                      <XAxis 
+                        dataKey="date" 
+                        tick={{ fontSize: 12, fill: '#6b7280' }} 
+                        axisLine={{ stroke: '#e5e7eb' }}
+                        tickLine={false}
+                      />
+                      <YAxis 
+                        tick={{ fontSize: 12, fill: '#6b7280' }} 
+                        axisLine={false}
+                        tickLine={false}
+                      />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: 'white', 
+                          borderRadius: '8px', 
+                          border: 'none', 
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.1)' 
+                        }} 
+                      />
+                      <Legend />
+                      <Line 
+                        type="monotone" 
+                        dataKey="familiar" 
+                        name="Plan Familiar" 
+                        stroke="#f97316" 
+                        strokeWidth={3}
+                        dot={{ r: 4, fill: '#f97316', strokeWidth: 2, stroke: 'white' }}
+                        activeDot={{ r: 6 }}
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="pro" 
+                        name="Plan Pro" 
+                        stroke="#22c55e" 
+                        strokeWidth={3}
+                        dot={{ r: 4, fill: '#22c55e', strokeWidth: 2, stroke: 'white' }}
+                        activeDot={{ r: 6 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
               <div className="table-container">
                 <div className="table-header">
                   <h2>Gestión de Planes</h2>
