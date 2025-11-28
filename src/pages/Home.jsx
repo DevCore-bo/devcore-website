@@ -76,7 +76,8 @@ const Home = () => {
           // Ensure consistent field mapping
           status: data.estado || "inactivo", // Map 'estado' to 'status' for UI logic if needed, or just use 'estado'
           createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toISOString() : data.createdAt,
-          lastLogin: data.lastLogin?.toDate ? data.lastLogin.toDate().toISOString() : (data.lastLogin || new Date().toISOString())
+          lastLogin: data.lastLogin?.toDate ? data.lastLogin.toDate().toISOString() : (data.lastLogin || new Date().toISOString()),
+          subscriptionStartDate: data.subscriptionStartDate?.toDate ? data.subscriptionStartDate.toDate().toISOString() : data.subscriptionStartDate
         };
       });
       setUsers(usersList);
@@ -352,6 +353,7 @@ const Home = () => {
                           <th>Usuario</th>
                           <th>Email</th>
                           <th>Plan</th>
+                          <th>Fecha de Inicio</th>
                           <th>Estado</th>
                           <th>Acciones</th>
                         </tr>
@@ -371,6 +373,11 @@ const Home = () => {
                             </td>
                             <td>{user.email}</td>
                             <td><span className="plan-badge">{user.subscriptionPlan || "N/A"}</span></td>
+                            <td>
+                              {user.subscriptionPlan === "basico" || !user.subscriptionStartDate
+                                ? "N/A"
+                                : new Date(user.subscriptionStartDate).toLocaleDateString()}
+                            </td>
                             <td>
                               <span className={`status ${user.estado === "activo" ? "active" : "inactive"}`}>
                                 {user.estado === "activo" ? "Activo" : "Inactivo"}
