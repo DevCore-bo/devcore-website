@@ -24,6 +24,9 @@ import { db } from "../firebaseConfig";
 const Home = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [searchTerm, setSearchTerm] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
+  const [filterPlan, setFilterPlan] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
   const [users, setUsers] = useState([]);
   const [planes, setPlanes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -219,10 +222,15 @@ const Home = () => {
     }
   };
 
-  const filteredUsers = users.filter(user =>
-    (user.name?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
-    (user.email?.toLowerCase() || "").includes(searchTerm.toLowerCase())
-  );
+  const filteredUsers = users.filter(user => {
+    const matchesSearch = (user.name?.toLowerCase() || "").includes(searchTerm.toLowerCase()) ||
+      (user.email?.toLowerCase() || "").includes(searchTerm.toLowerCase());
+
+    const matchesPlan = filterPlan === "all" || (user.subscriptionPlan || "basico").toLowerCase() === filterPlan.toLowerCase();
+    const matchesStatus = filterStatus === "all" || (user.estado || "inactivo").toLowerCase() === filterStatus.toLowerCase();
+
+    return matchesSearch && matchesPlan && matchesStatus;
+  });
 
   const StatCard = ({ icon: IconComponent, title, value, subtitle, color }) => (
     <div className="stat-card">
@@ -340,9 +348,26 @@ const Home = () => {
                       <Search size={20} />
                       <input type="text" placeholder="Buscar usuarios..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     </div>
-                    <button className="filter-btn"><Filter size={20} />Filtros</button>
+                    <button className={`filter-btn ${showFilters ? 'active' : ''}`} onClick={() => setShowFilters(!showFilters)}>
+                      <Filter size={20} />Filtros
+                    </button>
                   </div>
                 </div>
+                {showFilters && (
+                  <div className="filters-row">
+                    <select value={filterPlan} onChange={(e) => setFilterPlan(e.target.value)} className="filter-select">
+                      <option value="all">Todos los Planes</option>
+                      <option value="basico">Básico</option>
+                      <option value="familiar">Familiar</option>
+                      <option value="pro">Pro</option>
+                    </select>
+                    <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="filter-select">
+                      <option value="all">Todos los Estados</option>
+                      <option value="activo">Activo</option>
+                      <option value="inactivo">Inactivo</option>
+                    </select>
+                  </div>
+                )}
                 <div className="table-wrapper">
                   {loading ? (
                     <div className="loading-state">Cargando usuarios...</div>

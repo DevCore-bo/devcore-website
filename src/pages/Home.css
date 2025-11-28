@@ -878,3 +878,35 @@
     text-align: center;
   }
 }
+
+/* --- FILTERS ROW --- */
+.filters-row {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: rgba(248, 249, 250, 0.5);
+  border-bottom: 1px solid #e5e7eb;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.filter-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: white;
+  color: var(--navy-blue);
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.filter-select:focus {
+  border-color: var(--turquoise-light);
+  box-shadow: 0 0 0 2px rgba(33, 208, 178, 0.1);
+}
+
+.filter-btn.active {
+  background-color: var(--turquoise-light);
+  color: white;
+}
