@@ -1,0 +1,19 @@
+// Estructura general: Objeto JSON
+
+estado: "activo" o "inactivo" (String)
+createdAt: 26 de septiembre de 2025, 9:13:09 p.m. UTC-4 (String/Fecha)
+email: "tu@gmail.com" (String/Email)
+groupCount: 1 (Número Entero)
+name: "Coki" (String)
+ocrScans: 0 (Número Entero)
+pdfDownloads: 0 (Número Entero)
+excelDownloads: 0 (Número Entero)
+profilePictureUrl: "https://i.ibb.co/Hfwb013G/i-ZpJBB-Nrlh-NYj8vz-Og-Xuf11t-GwJ2-profile.jpg" (String/URL)
+subscriptionEndDate: 21 de noviembre de 2025, 7:37:04 p.m. UTC-4 (String/Fecha)
+subscriptionPlan: "basico" (String)
+subscriptionStartDate: 21 de octubre de 2025, 7:37:04 p.m. UTC-4 (String/Fecha)
+
+// Objeto anidado de Notificaciones
+notifications:
+  budgetWarnings: true (Booleano)
+  notificationsEnabled: true (Booleano)  
