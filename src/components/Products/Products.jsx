@@ -51,7 +51,7 @@ const Products = () => {
                         <img src={migo} alt="" style={{ width: "80%" }} />
                     </div>
                     <div className="cont-desc-pro">
-                        <h2>Cuenta-Migo</h2>
+                        <h2>CuentaConmigo</h2>
                         <p>App moderno para la adiministración y gestión de gastos compartidos y/o individuales</p>
                         <div className='cont-button-pro'>
                             <a href="/productos/migo">

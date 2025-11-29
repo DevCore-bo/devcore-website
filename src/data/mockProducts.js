@@ -169,7 +169,7 @@ export const productsData = [
     description:
       "La aplicación definitiva para gestionar gastos compartidos e individuales. Sincroniza tus finanzas, liquida deudas y toma el control de tu dinero.",
     logoSrc: "/logos/banner_migo.png",
-    downloadUrl: "https://github.com/DevCore-bo/devcore-website/releases/download/v1.0.0/app-release.apk",
+    downloadUrl: "https://github.com/DevCore-bo/devcore-website/releases/download/v1.0.0/CuentaConmigo.apk",
     keyFeatures: [
       { icon: "groups", text: "Gestión de Grupos" },
       { icon: "scan", text: "Escáner de Recibos (OCR)" },
@@ -222,7 +222,7 @@ export const productsData = [
         name: "Familiar",
         description:
           "Ideal para roommates, parejas, grupos de amigos.",
-        price: "20Bs/Mes",
+        price: "25Bs/Mes",
         features: [
           "Ideal para roommates, parejas, grupos de amigos",
           "Puede crear hasta 3 grupos (1 paga todos lo usan)",
@@ -238,7 +238,7 @@ export const productsData = [
       {
         name: "Pro",
         description: "Ideal para Freelancers, familias grandes y organización de eventos.",
-        price: "35Bs/Mes",
+        price: "40Bs/Mes",
         features: [
           "Ideal para Freelancers, familias grandes y organización de eventos",
           "Puede crear hasta 8 grupos (1 paga todos usan)",

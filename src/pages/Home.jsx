@@ -407,9 +407,9 @@ const Home = () => {
   const RevenueOverview = () => {
     const calculations = users.reduce((acc, user) => {
       const plan = (user.subscriptionPlan || 'basico').toLowerCase();
-      if (plan === 'basico') { acc.basicCount++; acc.basicRev += 25; }
-      if (plan === 'familiar') { acc.famCount++; acc.famRev += 20; }
-      if (plan === 'pro') { acc.proCount++; acc.proRev += 35; }
+      if (plan === 'basico') { acc.basicCount++; acc.basicRev += 30; }
+      if (plan === 'familiar') { acc.famCount++; acc.famRev += 25; }
+      if (plan === 'pro') { acc.proCount++; acc.proRev += 40; }
       return acc;
     }, { basicCount: 0, basicRev: 0, famCount: 0, famRev: 0, proCount: 0, proRev: 0 });
 
@@ -420,9 +420,9 @@ const Home = () => {
         <h2 style={{ marginBottom: '1.5rem', color: 'var(--navy-blue)' }}>Ingresos Estimados</h2>
         <div className="stats-grid">
           <StatCard icon={DollarSign} title="Ingreso Mensual Total" value={`${totalRev} Bs`} subtitle="Estimado" color="purple" />
-          <StatCard icon={Users} title="Ingreso Básico" value={`${calculations.basicRev} Bs`} subtitle={`${calculations.basicCount} usuarios (25Bs/u)`} color="gray" />
-          <StatCard icon={Users} title="Ingreso Familiar" value={`${calculations.famRev} Bs`} subtitle={`${calculations.famCount} usuarios (20Bs/u)`} color="orange" />
-          <StatCard icon={Users} title="Ingreso Pro" value={`${calculations.proRev} Bs`} subtitle={`${calculations.proCount} usuarios (35Bs/u)`} color="green" />
+          <StatCard icon={Users} title="Ingreso Básico" value={`${calculations.basicRev} Bs`} subtitle={`${calculations.basicCount} usuarios (30Bs/u)`} color="gray" />
+          <StatCard icon={Users} title="Ingreso Familiar" value={`${calculations.famRev} Bs`} subtitle={`${calculations.famCount} usuarios (25Bs/u)`} color="orange" />
+          <StatCard icon={Users} title="Ingreso Pro" value={`${calculations.proRev} Bs`} subtitle={`${calculations.proCount} usuarios (40Bs/u)`} color="green" />
         </div>
       </div>
     );
